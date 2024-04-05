@@ -1,5 +1,7 @@
 package com.example.facturas_tfc.ui
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +10,14 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.facturas_tfc.R
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val TAG = "VN MainActivity"
+
+        fun create(context: Context): Intent =
+            Intent(context, MainActivity::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

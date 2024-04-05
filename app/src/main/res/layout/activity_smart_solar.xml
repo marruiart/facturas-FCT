@@ -21,7 +21,6 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
         android:layout_marginTop="?attr/actionBarSize"
         android:padding="@dimen/dimen_size_16"
         tools:context=".ui.secondPract.SmartSolarActivity">
@@ -68,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-            tools:layout="@layout/fragment_ss_details" />
+            tools:layout="@layout/fragment_ss_installation" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
