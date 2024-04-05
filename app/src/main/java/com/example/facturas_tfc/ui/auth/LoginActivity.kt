@@ -56,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
             btnLoginSignup.setOnClickListener { navigateSignup() }
             btnLoginForgotPassword.setOnClickListener { navigateForgotPassword() }
         }
+
     }
 
     private fun navigateMain() {

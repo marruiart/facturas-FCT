@@ -11,11 +11,12 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:title="Atrás"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_chevron_left"
-        app:navigationIconTint="@color/seed" />
+        app:navigationIconTint="?attr/colorPrimary"
+        app:title="Atrás"
+        app:titleTextColor="?attr/colorPrimary" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"

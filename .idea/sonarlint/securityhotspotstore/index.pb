@@ -29,3 +29,8 @@ P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 ‡
 Wapp/src/main/java/com/example/facturas_tfc/ui/secondPract/fragment/SSDetailsFragment.kt,3\2\3258de0488f15f0bdacec122d2ec0315659c7e07
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+|
+Lapp/src/main/java/com/example/facturas_tfc/ui/adapter/PracticeListAdapter.kt,e\5\e5618c84a90fc8727dde92af1ee78ec7f34625ac
