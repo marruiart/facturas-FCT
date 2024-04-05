@@ -1,3 +1,31 @@
 
-j
-:app/src/main/java/com/example/facturas_tfc/MainActivity.kt,e\9\e919a4753b3af66b2494c8839feb1fb4426556f4
+t
+Dapp/src/main/java/com/example/facturas_tfc/ui/auth/SignupActivity.kt,c\5\c57e4be673ff6ba7777c5ac24eb1a6c0fcf33dfa
+m
+=app/src/main/java/com/example/facturas_tfc/ui/MainActivity.kt,0\8\08f1cf9c5f980105a0082fc86593352f0abfbe2e
+€
+Papp/src/main/java/com/example/facturas_tfc/ui/firstPract/InvoicesListActivity.kt,a\1\a1914f1206c0c2352d00dd3dcb5fa1cfeee18a1a
+‚
+Rapp/src/main/java/com/example/facturas_tfc/ui/firstPract/InvoicesFilterFragment.kt,3\8\38ff6756d52acfa743c40cb1d976c360af197e7d
+
+Oapp/src/main/java/com/example/facturas_tfc/ui/secondPract/SmartSolarActivity.kt,8\b\8b707bf227e430c2fb3844637b80351aeadf2ef7
+†
+Vapp/src/main/java/com/example/facturas_tfc/ui/secondPract/fragment/SSEnergyFragment.kt,4\1\41ba3ec0874c8248f3c61fb193aa6a7e5ed9ef65
+D
+app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
+@
+build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d
+C
+settings.gradle.kts,7\4\749edfcc96398253e5b3416184e95c46621da850
+I
+gradle/libs.versions.toml,d\7\d7595319a0658be6f1ed500ad590d42e4b28bc4f
+s
+Capp/src/main/java/com/example/facturas_tfc/ui/auth/LoginActivity.kt,0\8\08323fdf92aad51c123955713e8fe5f07128de1c
+|
+Lapp/src/main/java/com/example/facturas_tfc/ui/auth/ForgotPasswordActivity.kt,8\9\89e02fcfb8e85960807c1291e8b186ea3b4fd6e2
+Œ
+\app/src/main/java/com/example/facturas_tfc/ui/secondPract/fragment/SSInstallationFragment.kt,c\c\cce730a44a9ffefcdfb8cac515a750b0b5686f65
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+‡
+Wapp/src/main/java/com/example/facturas_tfc/ui/secondPract/fragment/SSDetailsFragment.kt,3\2\3258de0488f15f0bdacec122d2ec0315659c7e07

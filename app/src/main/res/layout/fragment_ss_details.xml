@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.auth.LoginActivity">
+
+
+    <TextView
+        android:id="@+id/tv_ss_detail_cau_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_size_16"
+        android:labelFor="@+id/et_ss_detail_cau"
+        android:text="CAU (Código Autoconsumo)"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_ss_detail_cau"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_cau_label"
+        tools:text="ES0021000000001994LJ1FA000" />
+
+    <TextView
+        android:id="@+id/tv_ss_detail_status_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_size_16"
+        android:labelFor="@+id/et_ss_detail_cau"
+        android:text="Estado solicitud alta autoconsumidor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_cau" />
+
+    <EditText
+        android:id="@+id/et_ss_detail_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_status_label"
+        tools:text="No hemos recibido ninguna solicitud de autoconsumo" />
+
+    <TextView
+        android:id="@+id/tv_ss_detail_type_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_size_16"
+        android:labelFor="@+id/et_ss_detail_cau"
+        android:text="Tipo autoconsumo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_status" />
+
+    <EditText
+        android:id="@+id/et_ss_detail_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_type_label"
+        tools:text="Con excedentes y compensación Individual - Consumo" />
+
+    <TextView
+        android:id="@+id/tv_ss_detail_compensation_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_size_16"
+        android:labelFor="@+id/et_ss_detail_cau"
+        android:text="Compensación de excedentes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_type" />
+
+    <EditText
+        android:id="@+id/et_ss_detail_compensation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_compensation_label"
+        tools:text="Precio PVPC" />
+
+    <TextView
+        android:id="@+id/tv_ss_detail_potency_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_size_16"
+        android:labelFor="@+id/et_ss_detail_cau"
+        android:text="Potencia de instalación"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_compensation" />
+
+    <EditText
+        android:id="@+id/et_ss_detail_potency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="none"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_potency_label"
+        tools:text="5kWp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

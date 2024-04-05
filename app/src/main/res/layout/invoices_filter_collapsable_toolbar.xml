@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    tools:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/collapsingToolbarLayoutMediumSize"
+        app:collapsedTitleTextAppearance="@style/TextAppearance.Material3.ActionBar.Title"
+        app:expandedTitleMarginEnd="?attr/dialogPreferredPadding"
+        app:expandedTitleMarginStart="?attr/dialogPreferredPadding"
+        app:expandedTitleTextAppearance="@style/TextAppearance.Design.CollapsingToolbar.Expanded"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layoutDirection="rtl"
+            android:paddingEnd="?attr/dialogPreferredPadding"
+            app:layout_collapseMode="pin"
+            app:navigationIcon="@drawable/ic_close"
+            app:title="@string/invoices_filter_title"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+</com.google.android.material.appbar.AppBarLayout>
