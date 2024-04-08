@@ -134,6 +134,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_other_option_label" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_other_option_label"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="1.5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
