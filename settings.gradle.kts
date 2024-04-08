@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "facturas-TFC"
+rootProject.name = "facturas-FCT"
 include(":app")
  

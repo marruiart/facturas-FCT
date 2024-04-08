@@ -34,3 +34,7 @@ Wapp/src/main/java/com/example/facturas_tfc/ui/secondPract/fragment/SSDetailsFra
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 |
 Lapp/src/main/java/com/example/facturas_tfc/ui/adapter/PracticeListAdapter.kt,e\5\e5618c84a90fc8727dde92af1ee78ec7f34625ac
+~
+Napp/src/main/java/com/example/facturas_tfc/data/repository/model/PracticeVO.kt,4\b\4bbe655b2c4c15337f7da4a0660a09a169965c04
+|
+Lapp/src/main/java/com/example/facturas_tfc/data/network/NetworkRepository.kt,f\a\fa7fa5bc97f639a44f7e50f34499b581f0d67974
