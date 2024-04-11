@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.facturas_tfc"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -51,4 +51,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // RETROFIT
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    // RETROMOCK
+    implementation(libs.retromock)
 }
