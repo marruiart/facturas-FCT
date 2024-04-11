@@ -10,7 +10,7 @@ import com.example.facturas_tfc.R
 class InvoicesFilterFragment : Fragment() {
 
     companion object {
-        private const val TAG = "VN InvoicesFilterFragment"
+        private const val TAG = "VIEWNEXT InvoicesFilterFragment"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

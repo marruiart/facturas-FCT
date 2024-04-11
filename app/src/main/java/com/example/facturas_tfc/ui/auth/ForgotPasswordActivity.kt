@@ -15,7 +15,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
     private var padding: Int = 0
 
     companion object {
-        private const val TAG = "VN ForgotPasswordActivity"
+        private const val TAG = "VIEWNEXT ForgotPasswordActivity"
 
         fun create(context: Context): Intent =
             Intent(context, ForgotPasswordActivity::class.java)

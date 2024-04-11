@@ -58,3 +58,15 @@ Mapp/src/main/java/com/example/facturas_tfc/ui/firstPract/InvoicesViewModel.kt,
 bapp/src/main/java/com/example/facturas_tfc/data/network/invoicesApi/models/InvoicesListResponse.kt,d\d\dded12724eae21a47bf290fb6a7ab4c53d519948
 |
 Lapp/src/main/java/com/example/facturas_tfc/ui/adapter/InvoicesListAdapter.kt,e\1\e1a3c231561d81e4555d2ac3edffa5cc15b43c4d
+}
+Mapp/src/main/java/com/example/facturas_tfc/utils/RetromockResourcesFactory.kt,a\a\aa61a7016d0e5661367688ee4acca8770d22885c
+g
+7app/src/main/java/com/example/facturas_tfc/utils/App.kt,f\c\fc6de306deab06985534cf81153c2ee788d24c84
+`
+0app/src/main/assets/mock_invoices_paid_list.json,9\a\9a742340a7f8728c43e0a7b613d8f44e526ed568
+X
+(app/src/main/assets/mock_empty_list.json,a\2\a219ffcd6b8752249616d577bcad61c8b585784b
+c
+3app/src/main/assets/mock_invoices_current_list.json,d\1\d1e64781075f7cca4c30f1bcff7a9e933c879d1f
+[
++app/src/main/assets/mock_invoices_list.json,a\4\a4445a445275fb807c51cc311d4ae6e4a8a7b92d

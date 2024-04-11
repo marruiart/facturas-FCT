@@ -4,11 +4,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.facturas.utils.AppEnvironment
 import com.example.facturas_tfc.R
 import com.example.facturas_tfc.data.repository.model.InvoiceVO
 import com.example.facturas_tfc.databinding.ActivityInvoicesListBinding
@@ -20,7 +22,7 @@ class InvoicesListActivity : AppCompatActivity() {
     private val invoicesVM: InvoicesViewModel by viewModels()
 
     companion object {
-        private const val TAG = "VN InvoicesListActivity"
+        private const val TAG = "VIEWNEXT InvoicesListActivity"
 
         fun create(context: Context): Intent =
             Intent(context, InvoicesListActivity::class.java)
@@ -53,6 +55,7 @@ class InvoicesListActivity : AppCompatActivity() {
     private fun initUI() {
         initRecyclerView()
         initListeners()
+        initObservers()
     }
 
     private fun initRecyclerView() {
@@ -65,6 +68,24 @@ class InvoicesListActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
+        setEnvironmentSwitchListener()
+    }
+
+    private fun setEnvironmentSwitchListener() {
+        binding.switchEnvironment.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                Toast.makeText(applicationContext, "Entorno cambiado a producción", Toast.LENGTH_SHORT).show()
+                invoicesVM.changeEnvironment(AppEnvironment.PROD_ENVIRONMENT)
+            } else {
+                Toast.makeText(
+                    applicationContext, "Entorno cambiado a desarrollo (mock data)", Toast.LENGTH_SHORT
+                ).show()
+                invoicesVM.changeEnvironment(AppEnvironment.MOCK_ENVIRONMENT)
+            }
+        }
+    }
+
+    private fun initObservers() {
         invoicesVM.invoices.observe(this) { invoices ->
             populatePracticeList(invoices)
         }

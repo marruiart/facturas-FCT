@@ -15,6 +15,8 @@ class NetworkRepository private constructor(
         get() = _invoices
 
     companion object {
+        private const val TAG = "VIEWNEXT NetworkRepository"
+
         private var _INSTANCE: NetworkRepository? = null
 
         fun getInstance(): NetworkRepository {
@@ -24,16 +26,16 @@ class NetworkRepository private constructor(
 
     suspend fun fetchInvoices(environment: String = ENVIRONMENT) {
         try {
-            val response = service.getAllInvoices()
+            val response = service.getAllInvoices(environment)
             if (response.isSuccessful && response.body() != null) {
-                Log.d("DEBUG INVOICES RESPONSE", response.body().toString())
+                Log.d(TAG, response.body().toString())
                 _invoices.postValue(response.body()!!.getInvoicesList().map { it.asApiModel() })
             } else {
-                Log.e("ERROR", response.message())
+                Log.e(TAG, response.message())
                 _invoices.postValue(emptyList())
             }
         } catch (e: Exception) {
-            Log.e("ERROR", e.message.toString())
+            Log.e(TAG, e.message.toString())
             _invoices.postValue(emptyList())
         }
 

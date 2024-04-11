@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     )
 
     companion object {
-        private const val TAG = "VN MainActivity"
+        private const val TAG = "VIEWNEXT MainActivity"
 
         fun create(context: Context): Intent =
             Intent(context, MainActivity::class.java)

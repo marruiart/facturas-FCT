@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private var padding: Int = 0
 
     companion object {
-        private const val TAG = "VN LoginActivity"
+        private const val TAG = "VIEWNEXT LoginActivity"
 
         fun create(context: Context): Intent = Intent(context, LoginActivity::class.java)
     }

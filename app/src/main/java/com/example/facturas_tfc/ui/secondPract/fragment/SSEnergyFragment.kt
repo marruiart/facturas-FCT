@@ -18,6 +18,6 @@ class SSEnergyFragment : Fragment() {
     }
 
     companion object {
-      private const val TAG = "VN SSEnergyFragment"
+      private const val TAG = "VIEWNEXT SSEnergyFragment"
     }
 }

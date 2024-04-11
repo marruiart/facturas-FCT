@@ -18,6 +18,6 @@ class SSDetailsFragment : Fragment() {
     }
 
     companion object {
-        private const val TAG = "VN SSDetailsFragment"
+        private const val TAG = "VIEWNEXT SSDetailsFragment"
     }
 }

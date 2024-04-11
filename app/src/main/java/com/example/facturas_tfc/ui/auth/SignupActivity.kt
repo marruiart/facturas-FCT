@@ -15,7 +15,7 @@ class SignupActivity : AppCompatActivity() {
     private var padding: Int = 0
 
     companion object {
-        private const val TAG = "VN SignupActivity"
+        private const val TAG = "VIEWNEXT SignupActivity"
 
         fun create(context: Context): Intent =
             Intent(context, SignupActivity::class.java)

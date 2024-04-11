@@ -21,7 +21,7 @@ class SmartSolarActivity() : AppCompatActivity() {
     private var padding: Int = 0
 
     companion object {
-        private const val TAG = "VN SmartSolarActivity"
+        private const val TAG = "VIEWNEXT SmartSolarActivity"
 
         fun create(context: Context): Intent = Intent(context, SmartSolarActivity::class.java)
     }

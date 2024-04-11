@@ -20,6 +20,9 @@ class InvoicesViewModel : ViewModel() {
 
     fun changeEnvironment(environment: String) {
         repository.setEnvironment(environment)
+        viewModelScope.launch {
+            repository.refreshInvoicesList()
+        }
     }
 
 }
