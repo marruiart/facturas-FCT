@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">facturas-TFC</string>
     <!--  GENERAL MESSAGES  -->
-    <string name="not_available_yet">Esta funcionalidad aún no está disponible</string>
     <string name="information">Información</string>
     <string name="close">Cerrar</string>
+    <!-- TEMPORARY MESSAGES -->
+    <string name="not_available_yet">Esta funcionalidad aún no está disponible</string>
     <!-- INVOICES LIST -->
     <string name="invoices_list_title">Facturas</string>
     <string name="invoices_list_toolbar_back">Consumo</string>
