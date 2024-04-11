@@ -11,8 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.facturas_tfc.R
 import com.example.facturas_tfc.data.repository.model.PracticeVO
 import com.example.facturas_tfc.databinding.ActivityMainBinding
-import com.example.facturas_tfc.ui.firstPract.InvoicesListActivity
 import com.example.facturas_tfc.ui.adapter.PracticeListAdapter
+import com.example.facturas_tfc.ui.firstPract.InvoicesListActivity
 import com.example.facturas_tfc.ui.secondPract.SmartSolarActivity
 
 class MainActivity : AppCompatActivity() {
@@ -86,6 +86,5 @@ class MainActivity : AppCompatActivity() {
             2 -> startActivity(SmartSolarActivity.create(this))
             else -> Log.d(TAG, "No activity to be started")
         }
-
     }
 }

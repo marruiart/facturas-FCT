@@ -32,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setWindowInsets() {
-        padding = resources.getDimension(com.example.facturas_tfc.R.dimen.dimen_size_16).toInt()
+        padding = resources.getDimension(R.dimen.dimen_size_16).toInt()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
