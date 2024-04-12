@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -56,4 +57,9 @@ dependencies {
     implementation(libs.converter.gson)
     // RETROMOCK
     implementation(libs.retromock)
+    // ROOM
+    kapt(libs.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    // to be able to use observers
+    implementation(libs.androidx.room.ktx)
 }

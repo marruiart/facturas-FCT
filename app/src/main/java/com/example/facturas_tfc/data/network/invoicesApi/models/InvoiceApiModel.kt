@@ -1,6 +1,6 @@
-package com.example.facturas.data.network.invoicesApi.models
+package com.example.facturas_tfc.data.network.invoicesApi.models
 
-import com.example.facturas_tfc.data.repository.model.InvoiceVO
+import com.example.facturas_tfc.data.local.models.InvoiceEntity
 import java.time.LocalDate
 
 data class InvoiceApiModel(
@@ -8,11 +8,13 @@ data class InvoiceApiModel(
     val date: LocalDate,
     val amount: Float
 ) {
-    fun asInvoiceVO(): InvoiceVO {
-        return InvoiceVO(
+    fun asInvoiceEntity(): InvoiceEntity {
+        return InvoiceEntity(
             stateResource,
             date,
             amount
         )
     }
 }
+
+fun List<InvoiceApiModel>.asInvoiceEntityList() = this.map { it.asInvoiceEntity() }

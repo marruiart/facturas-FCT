@@ -1,17 +1,17 @@
-package com.example.facturas.data.network
+package com.example.facturas_tfc.data.network
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.facturas.data.network.invoicesApi.InvoicesApiService
-import com.example.facturas.data.network.invoicesApi.models.InvoiceApiModel
-import com.example.facturas.utils.ENVIRONMENT
+import com.example.facturas_tfc.data.network.invoicesApi.InvoicesApiService
+import com.example.facturas_tfc.data.network.invoicesApi.models.InvoiceApiModel
+import com.example.facturas_tfc.utils.ENVIRONMENT
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class NetworkRepository private constructor(
     private val service: InvoicesApiService
 ) {
-    private val _invoices: MutableLiveData<List<InvoiceApiModel>> = MutableLiveData(emptyList())
-    val invoices: LiveData<List<InvoiceApiModel>>
+    private val _invoices: MutableStateFlow<List<InvoiceApiModel>?> = MutableStateFlow(null)
+    val invoices: StateFlow<List<InvoiceApiModel>?>
         get() = _invoices
 
     companion object {
@@ -29,14 +29,14 @@ class NetworkRepository private constructor(
             val response = service.getAllInvoices(environment)
             if (response.isSuccessful && response.body() != null) {
                 Log.d(TAG, response.body().toString())
-                _invoices.postValue(response.body()!!.getInvoicesList().map { it.asApiModel() })
+                _invoices.value = response.body()!!.getInvoicesList().map { it.asApiModel() }
             } else {
                 Log.e(TAG, response.message())
-                _invoices.postValue(emptyList())
+                _invoices.value = emptyList()
             }
         } catch (e: Exception) {
             Log.e(TAG, e.message.toString())
-            _invoices.postValue(emptyList())
+            _invoices.value = null
         }
 
     }

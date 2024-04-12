@@ -1,4 +1,6 @@
-package com.example.facturas.data.network.invoicesApi.models
+package com.example.facturas_tfc.data.network.invoicesApi.models
+
+import com.example.facturas_tfc.data.network.invoicesApi.models.InvoiceResponse
 
 data class InvoicesListResponse(
     val facturas: List<InvoiceResponse>,

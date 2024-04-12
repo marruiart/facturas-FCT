@@ -1,4 +1,4 @@
-package com.example.facturas.data.network.invoicesApi
+package com.example.facturas_tfc.data.network.invoicesApi
 
 import co.infinum.retromock.NonEmptyBodyFactory
 import co.infinum.retromock.Retromock
@@ -7,9 +7,9 @@ import co.infinum.retromock.meta.MockBehavior
 import co.infinum.retromock.meta.MockCircular
 import co.infinum.retromock.meta.MockResponse
 import co.infinum.retromock.meta.MockResponses
-import com.example.facturas.data.network.invoicesApi.models.InvoicesListResponse
-import com.example.facturas.utils.AppEnvironment
-import com.example.facturas.utils.BASE_URL
+import com.example.facturas_tfc.data.network.invoicesApi.models.InvoicesListResponse
+import com.example.facturas_tfc.utils.AppEnvironment
+import com.example.facturas_tfc.utils.BASE_URL
 import com.example.facturas_tfc.utils.ResourceBodyFactory
 import retrofit2.Response
 import retrofit2.Retrofit

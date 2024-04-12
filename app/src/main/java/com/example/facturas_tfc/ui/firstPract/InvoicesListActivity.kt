@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.facturas.utils.AppEnvironment
+import com.example.facturas_tfc.utils.AppEnvironment
 import com.example.facturas_tfc.R
 import com.example.facturas_tfc.data.repository.model.InvoiceVO
 import com.example.facturas_tfc.databinding.ActivityInvoicesListBinding

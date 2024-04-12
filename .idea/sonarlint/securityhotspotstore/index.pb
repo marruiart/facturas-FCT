@@ -70,3 +70,13 @@ c
 3app/src/main/assets/mock_invoices_current_list.json,d\1\d1e64781075f7cca4c30f1bcff7a9e933c879d1f
 [
 +app/src/main/assets/mock_invoices_list.json,a\4\a4445a445275fb807c51cc311d4ae6e4a8a7b92d
+z
+Japp/src/main/java/com/example/facturas_tfc/data/local/LocalDbRepository.kt,3\f\3f8fb1d720b13c03d0cc671a290803a06e9dd018
+}
+Mapp/src/main/java/com/example/facturas_tfc/data/local/models/InvoiceEntity.kt,b\e\beedf85d2ebc71962b07f945e864d7e18d8cb006
+Å
+Qapp/src/main/java/com/example/facturas_tfc/data/local/converters/DateConverter.kt,5\f\5f3e9aabf18009354bcd84a93a552fc7436d82ba
+s
+Capp/src/main/java/com/example/facturas_tfc/data/local/InvoiceDao.kt,f\b\fbd967aedbb25aa1a4c266b03a9e7c5063bb305f
+y
+Iapp/src/main/java/com/example/facturas_tfc/data/local/InvoicesDatabase.kt,9\b\9bc051c475914efd4eb50d7a1b12ddf0af5db397

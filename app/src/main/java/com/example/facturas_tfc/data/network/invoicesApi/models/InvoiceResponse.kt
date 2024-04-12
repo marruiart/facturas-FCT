@@ -1,5 +1,6 @@
-package com.example.facturas.data.network.invoicesApi.models
+package com.example.facturas_tfc.data.network.invoicesApi.models
 
+import com.example.facturas_tfc.data.network.invoicesApi.models.InvoiceApiModel
 import com.example.facturas.utils.Dates
 import com.example.facturas_tfc.R
 import java.time.LocalDate
