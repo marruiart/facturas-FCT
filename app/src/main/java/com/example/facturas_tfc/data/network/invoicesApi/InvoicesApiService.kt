@@ -1,5 +1,6 @@
 package com.example.facturas_tfc.data.network.invoicesApi
 
+import android.util.Log
 import co.infinum.retromock.NonEmptyBodyFactory
 import co.infinum.retromock.Retromock
 import co.infinum.retromock.meta.Mock
@@ -45,6 +46,8 @@ interface IInvoicesMockApi : IInvoicesApi {
 class InvoicesApiService private constructor() {
 
     companion object {
+        private const val TAG = "VIEWNEXT InvoicesApiService"
+
         private var _INSTANCE: InvoicesApiService? = null
         lateinit var retrofit: IInvoicesProdApi
         lateinit var retromock: IInvoicesMockApi
@@ -74,8 +77,10 @@ class InvoicesApiService private constructor() {
 
     suspend fun getAllInvoices(environment: String): Response<InvoicesListResponse> {
         return if (environment == AppEnvironment.MOCK_ENVIRONMENT) {
+            Log.d(TAG, "Fetching invoices from retromock...")
             retromock.getAllInvoices()
         } else {
+            Log.d(TAG, "Fetching invoices from retrofit...")
             retrofit.getAllInvoices()
         }
     }

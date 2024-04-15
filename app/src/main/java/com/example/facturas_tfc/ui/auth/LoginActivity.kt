@@ -7,18 +7,25 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.facturas_tfc.R
+import com.example.facturas_tfc.core.NetworkConnectionManager
 import com.example.facturas_tfc.databinding.ActivityLoginBinding
 import com.example.facturas_tfc.ui.MainActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private val network = NetworkConnectionManager.getInstance(lifecycleScope)
     private var padding: Int = 0
 
     companion object {
         private const val TAG = "VIEWNEXT LoginActivity"
 
         fun create(context: Context): Intent = Intent(context, LoginActivity::class.java)
+    }
+
+    init {
+        network.startListenNetworkState()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +68,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun navigateMain() {
         startActivity(MainActivity.create(this))
+        this.finish()
     }
 
     private fun navigateSignup() {

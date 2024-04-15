@@ -80,3 +80,5 @@ s
 Capp/src/main/java/com/example/facturas_tfc/data/local/InvoiceDao.kt,f\b\fbd967aedbb25aa1a4c266b03a9e7c5063bb305f
 y
 Iapp/src/main/java/com/example/facturas_tfc/data/local/InvoicesDatabase.kt,9\b\9bc051c475914efd4eb50d7a1b12ddf0af5db397
+{
+Kapp/src/main/java/com/example/facturas_tfc/core/NetworkConnectionManager.kt,2\a\2ad7b53d8436103edd15eb6ea12b7856ca44c097

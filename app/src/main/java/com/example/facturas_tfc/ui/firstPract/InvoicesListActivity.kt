@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -14,10 +15,13 @@ import com.example.facturas_tfc.utils.AppEnvironment
 import com.example.facturas_tfc.R
 import com.example.facturas_tfc.data.repository.model.InvoiceVO
 import com.example.facturas_tfc.databinding.ActivityInvoicesListBinding
+import com.example.facturas_tfc.ui.MainActivity
 import com.example.facturas_tfc.ui.adapter.InvoicesListAdapter
+import com.google.android.material.appbar.MaterialToolbar
 
 class InvoicesListActivity : AppCompatActivity() {
     private lateinit var adapter: InvoicesListAdapter
+    private lateinit var toolbar: MaterialToolbar
     private lateinit var binding: ActivityInvoicesListBinding
     private val invoicesVM: InvoicesViewModel by viewModels()
 
@@ -48,7 +52,7 @@ class InvoicesListActivity : AppCompatActivity() {
     }
 
     private fun setToolbar() {
-        val toolbar = binding.toolbar
+        toolbar = binding.toolbar
         toolbar.inflateMenu(R.menu.invoices_list_toolbar_menu)
     }
 
@@ -69,6 +73,9 @@ class InvoicesListActivity : AppCompatActivity() {
 
     private fun initListeners() {
         setEnvironmentSwitchListener()
+        toolbar.setNavigationOnClickListener {
+            navigateUpTo(MainActivity.create(this))
+        }
     }
 
     private fun setEnvironmentSwitchListener() {
@@ -87,7 +94,14 @@ class InvoicesListActivity : AppCompatActivity() {
 
     private fun initObservers() {
         invoicesVM.invoices.observe(this) { invoices ->
-            populatePracticeList(invoices)
+            if (invoices.isEmpty()) {
+                binding.emptyRv.visibility = View.VISIBLE
+                binding.invoicesRv.visibility = View.GONE
+            } else {
+                populatePracticeList(invoices)
+                binding.emptyRv.visibility = View.GONE
+                binding.invoicesRv.visibility = View.VISIBLE
+            }
         }
     }
 
