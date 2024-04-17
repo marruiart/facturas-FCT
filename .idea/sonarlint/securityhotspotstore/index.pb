@@ -5,8 +5,6 @@ m
 =app/src/main/java/com/example/facturas_tfc/ui/MainActivity.kt,0\8\08f1cf9c5f980105a0082fc86593352f0abfbe2e
 Ä
 Papp/src/main/java/com/example/facturas_tfc/ui/firstPract/InvoicesListActivity.kt,a\1\a1914f1206c0c2352d00dd3dcb5fa1cfeee18a1a
-Ç
-Rapp/src/main/java/com/example/facturas_tfc/ui/firstPract/InvoicesFilterFragment.kt,3\8\38ff6756d52acfa743c40cb1d976c360af197e7d
 
 Oapp/src/main/java/com/example/facturas_tfc/ui/secondPract/SmartSolarActivity.kt,8\b\8b707bf227e430c2fb3844637b80351aeadf2ef7
 Ü
@@ -50,8 +48,6 @@ o
 Mapp/src/main/java/com/example/facturas_tfc/data/repository/model/InvoiceVO.kt,8\a\8ac42502da25a972147e0660a1fcd2e2a6b84276
 {
 Kapp/src/main/java/com/example/facturas_tfc/data/repository/AppRepository.kt,b\c\bc8df10a6144ccf0de0d1478f0bb685aa006efc6
-}
-Mapp/src/main/java/com/example/facturas_tfc/ui/firstPract/InvoicesViewModel.kt,f\5\f5fb175fce512337012c1832349ea366d8c67823
 ç
 ]app/src/main/java/com/example/facturas_tfc/data/network/invoicesApi/models/InvoiceResponse.kt,6\1\61df4494fe692f9df4d61bf0982d455e2f4a74b7
 í
@@ -82,3 +78,17 @@ y
 Iapp/src/main/java/com/example/facturas_tfc/data/local/InvoicesDatabase.kt,9\b\9bc051c475914efd4eb50d7a1b12ddf0af5db397
 {
 Kapp/src/main/java/com/example/facturas_tfc/core/NetworkConnectionManager.kt,2\a\2ad7b53d8436103edd15eb6ea12b7856ca44c097
+F
+app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
+Ç
+Rapp/src/main/java/com/example/facturas_tfc/core/dialog/FullScreenDialogFragment.kt,0\3\0395c0b2eb8edc348dc8c92e1f4249a659104528
+ë
+aapp/src/main/java/com/example/facturas_tfc/ui/firstPract/fragment/InvoicesFilterDialogFragment.kt,2\a\2a5723c8ed88ecf9b022732cd6792d3751ee842e
+á
+Wapp/src/main/java/com/example/facturas_tfc/ui/firstPract/viewmodel/InvoicesViewModel.kt,c\3\c3c6bba9bbf85990777b692bd759ee2737f5e413
+{
+Kapp/src/main/java/com/example/facturas_tfc/data/repository/FilterService.kt,6\a\6abb69b697de08fdbd48cc55f0d4ad0875c256a0
+z
+Japp/src/main/java/com/example/facturas_tfc/data/repository/model/Filter.kt,8\8\888ae2bdb9a91d816fb1a8a94dcaa43701a97809
+x
+Happ/src/main/java/com/example/facturas_tfc/core/dateformat/DateFormat.kt,a\6\a622442dfa8ae6cf4556e90dfff246120c61840e

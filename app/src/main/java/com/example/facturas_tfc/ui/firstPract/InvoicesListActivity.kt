@@ -13,16 +13,21 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.facturas_tfc.utils.AppEnvironment
 import com.example.facturas_tfc.R
+import com.example.facturas_tfc.data.repository.model.Filter
 import com.example.facturas_tfc.data.repository.model.InvoiceVO
 import com.example.facturas_tfc.databinding.ActivityInvoicesListBinding
 import com.example.facturas_tfc.ui.MainActivity
 import com.example.facturas_tfc.ui.adapter.InvoicesListAdapter
+import com.example.facturas_tfc.ui.firstPract.fragment.InvoicesFilterDialogFragment
+import com.example.facturas_tfc.ui.firstPract.fragment.InvoicesFilterDialogFragmentListener
+import com.example.facturas_tfc.ui.firstPract.viewmodel.InvoicesViewModel
 import com.google.android.material.appbar.MaterialToolbar
 
-class InvoicesListActivity : AppCompatActivity() {
+class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentListener {
     private lateinit var adapter: InvoicesListAdapter
     private lateinit var toolbar: MaterialToolbar
     private lateinit var binding: ActivityInvoicesListBinding
+    private lateinit var filtersDialog: InvoicesFilterDialogFragment
     private val invoicesVM: InvoicesViewModel by viewModels()
 
     companion object {
@@ -76,6 +81,15 @@ class InvoicesListActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener {
             navigateUpTo(MainActivity.create(this))
         }
+        toolbar.setOnMenuItemClickListener { item ->
+            when(item.itemId) {
+                R.id.btn_menu_filter -> {
+                    showDialog()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setEnvironmentSwitchListener() {
@@ -108,6 +122,21 @@ class InvoicesListActivity : AppCompatActivity() {
     private fun populatePracticeList(invoices: List<InvoiceVO>) {
         Log.d(TAG, invoices.toString())
         adapter.submitList(invoices)
+    }
+
+    private fun showDialog() {
+        filtersDialog = InvoicesFilterDialogFragment(this)
+        filtersDialog.show(supportFragmentManager, "InvoicesFilterDialogFragment")
+    }
+
+    override fun onApplyFilters(filter: Filter) {
+        invoicesVM.applyFilter(filter)
+        filtersDialog.dismiss()
+    }
+
+    override fun onClearFilters() {
+        Log.d(TAG, "onClearFilters")
+        filtersDialog.dismiss()
     }
 
 }
