@@ -11,13 +11,16 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.facturas_tfc.R
 import com.example.facturas_tfc.databinding.ActivitySmartSolarBinding
+import com.example.facturas_tfc.ui.MainActivity
 import com.example.facturas_tfc.ui.secondPract.fragment.SSDetailsFragment
 import com.example.facturas_tfc.ui.secondPract.fragment.SSEnergyFragment
 import com.example.facturas_tfc.ui.secondPract.fragment.SSInstallationFragment
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.tabs.TabLayout
 
 class SmartSolarActivity() : AppCompatActivity() {
     private lateinit var binding: ActivitySmartSolarBinding
+    private lateinit var toolbar: MaterialToolbar
     private var padding: Int = 0
 
     companion object {
@@ -33,6 +36,7 @@ class SmartSolarActivity() : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         setWindowInsets()
+        toolbar = binding.mtoolbarSmartSolar
         initUI()
     }
 
@@ -63,6 +67,9 @@ class SmartSolarActivity() : AppCompatActivity() {
     }
 
     private fun initListeners() {
+        toolbar.setNavigationOnClickListener {
+            navigateUpTo(MainActivity.create(this))
+        }
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -86,11 +93,18 @@ class SmartSolarActivity() : AppCompatActivity() {
         })
     }
 
+
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
+            val currentFragment =
+                supportFragmentManager.findFragmentById(R.id.ss_fragment_container)
+            if (currentFragment != null) {
+                remove(currentFragment)
+            }
             replace(R.id.ss_fragment_container, fragment)
             addToBackStack(null)
             commit()
         }
     }
+
 }
