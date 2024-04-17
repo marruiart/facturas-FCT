@@ -1,28 +1,19 @@
 package com.example.facturas_tfc.data.repository.model
 
 import com.example.facturas.utils.Dates
-import com.example.facturas_tfc.data.local.models.InvoiceEntity
 import java.time.LocalDate
 
 data class InvoiceVO(
-    val stateResource: Int, val date: LocalDate, val amount: Float
-) {
-    fun asInvoiceEntity(): InvoiceEntity {
-        return InvoiceEntity(
-            stateResource, date, amount
-        )
-    }
-}
-
-fun List<InvoiceVO>.asInvoiceEntityList(): List<InvoiceEntity> {
-    return this.map {
-        it.asInvoiceEntity()
-    }
-}
+    val stateResource: Int,
+    val date: LocalDate,
+    val amount: Float
+)
 
 fun List<InvoiceVO>.applyFilter(filter: Filter): List<InvoiceVO> {
     return this.filter { invoice ->
-        checkFilterByDate(invoice, filter) && checkFilterByAmount(invoice, filter) && checkFilterByState(invoice, filter)
+        checkFilterByDate(invoice, filter)
+                && checkFilterByAmount(invoice, filter)
+                && checkFilterByState(invoice, filter)
     }
 }
 
