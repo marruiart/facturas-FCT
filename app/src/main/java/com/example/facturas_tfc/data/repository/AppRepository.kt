@@ -7,7 +7,7 @@ import com.example.facturas_tfc.data.local.models.asInvoiceVOList
 import com.example.facturas_tfc.data.network.NetworkRepository
 import com.example.facturas_tfc.data.network.invoicesApi.models.asInvoiceEntityList
 import com.example.facturas_tfc.data.repository.model.InvoiceVO
-import com.example.facturas_tfc.utils.ENVIRONMENT
+import com.example.facturas_tfc.core.utils.ENVIRONMENT
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

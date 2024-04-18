@@ -3,7 +3,7 @@ package com.example.facturas_tfc.data.network
 import android.util.Log
 import com.example.facturas_tfc.data.network.invoicesApi.InvoicesApiService
 import com.example.facturas_tfc.data.network.invoicesApi.models.InvoiceApiModel
-import com.example.facturas_tfc.utils.ENVIRONMENT
+import com.example.facturas_tfc.core.utils.ENVIRONMENT
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 

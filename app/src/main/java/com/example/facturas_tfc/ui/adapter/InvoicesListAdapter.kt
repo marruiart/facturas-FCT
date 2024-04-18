@@ -3,16 +3,25 @@ package com.example.facturas_tfc.ui.adapter
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.facturas.utils.Dates
+import com.example.facturas_tfc.R
+import com.example.facturas_tfc.core.extension.asCurrency
+import com.example.facturas_tfc.core.extension.toStringDate
+import com.example.facturas_tfc.core.utils.getThemeColor
 import com.example.facturas_tfc.data.repository.model.InvoiceVO
 import com.example.facturas_tfc.databinding.ItemInvoicesListBinding
+import com.google.android.material.R.attr as theme
 
 class InvoicesListAdapter :
     ListAdapter<InvoiceVO, InvoicesListAdapter.InvoicesListViewHolder>(InvoiceDiffCallBack()) {
+
+    companion object {
+        private const val TAG = "VIEWNEXT InvoicesListAdapter"
+    }
 
     class InvoicesListViewHolder(
         private val binding: ItemInvoicesListBinding,
@@ -22,10 +31,16 @@ class InvoicesListAdapter :
         private val date = binding.itemDate
         private val state = binding.itemState
         fun bindView(invoice: InvoiceVO) {
-            Log.d("INVOICES_ADAPTER", invoice.toString())
-            date.text = invoice.date.format(Dates.FORMATTER)
+            Log.d(TAG, invoice.toString())
+
+            date.text = invoice.date.toStringDate("yy MMM yyyy")
             state.text = context.getString(invoice.stateResource)
-            amount.text = invoice.amount.toString()
+            if (invoice.stateResource == R.string.invoice_item_pending) {
+                state.setTextColor(getThemeColor(theme.colorError, state))
+            } else if (invoice.stateResource == R.string.invoice_item_paid) {
+                state.visibility = View.GONE
+            }
+            amount.text = invoice.amount.asCurrency()
         }
     }
 
@@ -41,7 +56,6 @@ class InvoicesListAdapter :
      * Create new views (invoked by the layout manager)
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InvoicesListViewHolder {
-        Log.d("INVOICES_ADAPTER", "onCreateViewHolder")
         val binding =
             ItemInvoicesListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return InvoicesListViewHolder(binding, parent.context)
@@ -51,7 +65,6 @@ class InvoicesListAdapter :
      * Replace the contents of a view (invoked by the layout manager)
      */
     override fun onBindViewHolder(holder: InvoicesListViewHolder, position: Int) {
-        Log.d("INVOICES_ADAPTER", "onBindViewHolder")
         val invoice = getItem(position)
         holder.bindView(invoice)
     }

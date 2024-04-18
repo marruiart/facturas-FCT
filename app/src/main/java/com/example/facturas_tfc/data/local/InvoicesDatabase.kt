@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.facturas_tfc.data.local.converters.DateConverter
 import com.example.facturas_tfc.data.local.models.InvoiceEntity
-import com.example.facturas_tfc.utils.App
+import com.example.facturas_tfc.di.App
 
 @Database(entities = [InvoiceEntity::class], version = 1)
 @TypeConverters(DateConverter::class)

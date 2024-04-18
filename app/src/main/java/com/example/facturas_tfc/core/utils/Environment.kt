@@ -1,4 +1,4 @@
-package com.example.facturas_tfc.utils
+package com.example.facturas_tfc.core.utils
 
 const val ENVIRONMENT = AppEnvironment.MOCK_ENVIRONMENT
 const val BASE_URL = "https://viewnextandroid.wiremockapi.cloud/"

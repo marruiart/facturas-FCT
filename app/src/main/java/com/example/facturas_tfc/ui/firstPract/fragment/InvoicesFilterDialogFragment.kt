@@ -8,7 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.facturas_tfc.R
-import com.example.facturas_tfc.core.dateformat.formatDate
+import com.example.facturas_tfc.core.extension.toStringDate
+import com.example.facturas_tfc.core.extension.asRoundedCurrency
 import com.example.facturas_tfc.data.repository.model.Filter
 import com.example.facturas_tfc.databinding.FragmentInvoicesFilterBinding
 import com.example.facturas_tfc.ui.firstPract.viewmodel.InvoicesViewModel
@@ -154,17 +155,25 @@ class InvoicesFilterDialogFragment(
         val selectedMin = floor(tmpFilter.selectedAmount.min ?: min)
         val selectedMax = ceil(tmpFilter.selectedAmount.max ?: max)
 
-        binding.tvMinRange.text = getString(R.string.invoices_filter_amount_range, min.toInt())
-        binding.tvMaxRange.text = getString(R.string.invoices_filter_amount_range, max.toInt())
+        binding.tvMinRange.text = getString(
+            R.string.invoices_filter_amount_range,
+            min.toInt().asRoundedCurrency()
+        )
+        binding.tvMaxRange.text = getString(
+            R.string.invoices_filter_amount_range,
+            max.toInt().asRoundedCurrency()
+        )
         binding.rsAmountSlider.valueFrom = 0f
         binding.rsAmountSlider.valueTo = max
         setMiddleAmountsLayout(selectedMin.toInt(), selectedMax.toInt())
         binding.rsAmountSlider.setValues(selectedMin, selectedMax)
     }
 
-    private fun setMiddleAmountsLayout(min: Int?, max: Int?) {
+    private fun setMiddleAmountsLayout(min: Int, max: Int) {
         binding.tvMiddleRange.text = getString(
-            R.string.invoices_filter_selected_amount_range, min, max
+            R.string.invoices_filter_selected_amount_range,
+            min.asRoundedCurrency(),
+            max.asRoundedCurrency()
         )
     }
 
@@ -176,8 +185,8 @@ class InvoicesFilterDialogFragment(
     }
 
     private fun setDateLayout(dateButton: Button, date: LocalDate?) {
-        dateButton.text = if (date == null) getString(R.string.invoices_filter_default_date)
-        else formatDate(date, "dd/MM/yyyy")
+        dateButton.text =
+            date?.toStringDate("dd/MM/yyyy") ?: getString(R.string.invoices_filter_default_date)
     }
 
     // CHECKBOXES LAYOUT

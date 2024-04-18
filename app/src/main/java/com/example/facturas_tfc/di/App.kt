@@ -1,4 +1,4 @@
-package com.example.facturas_tfc.utils
+package com.example.facturas_tfc.di
 
 import android.app.Application
 import android.content.Context

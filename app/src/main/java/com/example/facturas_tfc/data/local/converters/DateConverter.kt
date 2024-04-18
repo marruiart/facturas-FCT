@@ -1,18 +1,16 @@
 package com.example.facturas_tfc.data.local.converters
 
 import androidx.room.TypeConverter
-import com.example.facturas.utils.Dates
+import com.example.facturas_tfc.core.extension.toLocalDate
+import com.example.facturas_tfc.core.extension.toStringDate
 import java.time.LocalDate
 
 object DateConverter {
 
     @TypeConverter
-    fun toLocalDate(dateString: String?): LocalDate? {
-        return if (dateString == null) null else LocalDate.parse(dateString, Dates.FORMATTER)
-    }
+    fun toLocalDate(date: String?): LocalDate? = date?.toLocalDate("dd/MM/yyyy")
 
     @TypeConverter
-    fun fromLocalDate(date: LocalDate?): String? {
-        return date?.format(Dates.FORMATTER)
-    }
+    fun fromLocalDate(date: LocalDate?): String? = date?.toStringDate("dd/MM/yyyy")
+
 }

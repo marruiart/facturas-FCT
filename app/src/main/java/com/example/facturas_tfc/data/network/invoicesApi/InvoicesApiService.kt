@@ -9,9 +9,8 @@ import co.infinum.retromock.meta.MockCircular
 import co.infinum.retromock.meta.MockResponse
 import co.infinum.retromock.meta.MockResponses
 import com.example.facturas_tfc.data.network.invoicesApi.models.InvoicesListResponse
-import com.example.facturas_tfc.utils.AppEnvironment
-import com.example.facturas_tfc.utils.BASE_URL
-import com.example.facturas_tfc.utils.ResourceBodyFactory
+import com.example.facturas_tfc.core.utils.AppEnvironment
+import com.example.facturas_tfc.core.utils.BASE_URL
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -29,8 +28,8 @@ interface IInvoicesProdApi : IInvoicesApi {
 interface IInvoicesMockApi : IInvoicesApi {
     @Mock
     @MockResponses(
-        MockResponse(body = "mock_empty_list.json"),
         MockResponse(body = "mock_invoices_list.json"),
+        MockResponse(body = "mock_empty_list.json"),
         MockResponse(body = "mock_invoices_current_list.json"),
         MockResponse(body = "mock_invoices_paid_list.json")
     )

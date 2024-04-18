@@ -25,7 +25,7 @@ class InvoicesViewModel : ViewModel() {
         get() = _filteredInvoices
 
     private var _filter = FilterService.filter
-    var filter: Filter = Filter()
+    val filter: Filter
         get() = _filter.copy()
 
     companion object {

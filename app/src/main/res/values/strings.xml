@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">facturas-TFC</string>
+    <string name="app_name" translatable="false">facturas-TFC</string>
     <!--  GENERAL MESSAGES  -->
     <string name="information">Información</string>
     <string name="close">Cerrar</string>
@@ -32,8 +32,8 @@
     <string name="invoices_filter_apply_btn">Aplicar</string>
     <string name="invoices_filter_remove_btn">Eliminar filtros</string>
     <string name="invoices_filter_pick_date">Seleccione fecha</string>
-    <string name="invoices_filter_amount_range">%d €</string>
-    <string name="invoices_filter_selected_amount_range">%d € - %d €</string>
+    <string name="invoices_filter_amount_range">%s</string>
+    <string name="invoices_filter_selected_amount_range">%s - %s</string>
     <!-- SMART SOLAR -->
     <string name="ss_installation_menu_label">Mi instalación</string>
     <string name="ss_energy_menu_label">Energía</string>

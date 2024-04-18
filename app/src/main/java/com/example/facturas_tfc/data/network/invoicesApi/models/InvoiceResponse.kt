@@ -1,9 +1,7 @@
 package com.example.facturas_tfc.data.network.invoicesApi.models
 
-import com.example.facturas_tfc.data.network.invoicesApi.models.InvoiceApiModel
-import com.example.facturas.utils.Dates
 import com.example.facturas_tfc.R
-import java.time.LocalDate
+import com.example.facturas_tfc.core.extension.toLocalDate
 
 data class InvoiceResponse(
     val descEstado: String,
@@ -12,9 +10,9 @@ data class InvoiceResponse(
 ) {
     fun asApiModel(): InvoiceApiModel {
         return InvoiceApiModel(
-            getTranslatedState(descEstado),
-            LocalDate.parse(fecha, Dates.FORMATTER),
-            importeOrdenacion
+            stateResource = getTranslatedState(descEstado),
+            date = fecha.toLocalDate("dd/MM/yyyy"),
+            amount = importeOrdenacion
         )
     }
 
