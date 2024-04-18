@@ -1,4 +1,4 @@
-package com.example.facturas_tfc.core.utils;
+package com.example.facturas_tfc.core.utils
 
 import android.view.View
 import com.google.android.material.color.MaterialColors

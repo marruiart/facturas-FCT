@@ -16,31 +16,37 @@ import com.example.facturas_tfc.data.repository.model.InvoiceVO
 import com.example.facturas_tfc.databinding.ItemInvoicesListBinding
 import com.google.android.material.R.attr as theme
 
-class InvoicesListAdapter :
-    ListAdapter<InvoiceVO, InvoicesListAdapter.InvoicesListViewHolder>(InvoiceDiffCallBack()) {
+class InvoicesListAdapter(
+    private val onInvoiceClick: ((invoice: InvoiceVO) -> Unit)
+) : ListAdapter<InvoiceVO, InvoicesListAdapter.InvoicesListViewHolder>(InvoiceDiffCallBack()) {
 
     companion object {
         private const val TAG = "VIEWNEXT InvoicesListAdapter"
     }
 
-    class InvoicesListViewHolder(
-        private val binding: ItemInvoicesListBinding,
-        private val context: Context
+    inner class InvoicesListViewHolder(
+        private val binding: ItemInvoicesListBinding, private val context: Context
     ) : RecyclerView.ViewHolder(binding.root) {
+        private val item = binding.itemInvoice
         private val amount = binding.itemAmount
         private val date = binding.itemDate
         private val state = binding.itemState
+
         fun bindView(invoice: InvoiceVO) {
             Log.d(TAG, invoice.toString())
 
+            item.setOnClickListener {
+                onInvoiceClick(invoice)
+            }
+            amount.text = invoice.amount.asCurrency()
             date.text = invoice.date.toStringDate("yy MMM yyyy")
             state.text = context.getString(invoice.stateResource)
+
             if (invoice.stateResource == R.string.invoice_item_pending) {
                 state.setTextColor(getThemeColor(theme.colorError, state))
             } else if (invoice.stateResource == R.string.invoice_item_paid) {
                 state.visibility = View.GONE
             }
-            amount.text = invoice.amount.asCurrency()
         }
     }
 

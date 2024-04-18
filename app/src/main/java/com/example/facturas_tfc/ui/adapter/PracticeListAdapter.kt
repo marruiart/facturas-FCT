@@ -10,9 +10,7 @@ import com.example.facturas_tfc.databinding.ItemMainPracticeBinding
 
 class PracticeListAdapter(
     private val onPracticeClick: ((practice: PracticeVO) -> Unit)
-) : ListAdapter<PracticeVO, PracticeListAdapter.PracticesListViewHolder>(
-    PracticeDiffCallBack()
-) {
+) : ListAdapter<PracticeVO, PracticeListAdapter.PracticesListViewHolder>(PracticeDiffCallBack()) {
 
     inner class PracticesListViewHolder(private val binding: ItemMainPracticeBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -29,16 +27,12 @@ class PracticeListAdapter(
 
     private class PracticeDiffCallBack : DiffUtil.ItemCallback<PracticeVO>() {
         override fun areItemsTheSame(
-            oldItem: PracticeVO,
-            newItem: PracticeVO
-        ): Boolean =
-            oldItem == newItem
+            oldItem: PracticeVO, newItem: PracticeVO
+        ): Boolean = oldItem == newItem
 
         override fun areContentsTheSame(
-            oldItem: PracticeVO,
-            newItem: PracticeVO
-        ): Boolean =
-            oldItem == newItem
+            oldItem: PracticeVO, newItem: PracticeVO
+        ): Boolean = oldItem == newItem
     }
 
     /**

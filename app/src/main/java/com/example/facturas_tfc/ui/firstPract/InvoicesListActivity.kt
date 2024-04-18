@@ -11,8 +11,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.facturas_tfc.core.utils.AppEnvironment
 import com.example.facturas_tfc.R
+import com.example.facturas_tfc.core.utils.AppEnvironment
 import com.example.facturas_tfc.data.repository.model.Filter
 import com.example.facturas_tfc.data.repository.model.InvoiceVO
 import com.example.facturas_tfc.databinding.ActivityInvoicesListBinding
@@ -22,6 +22,7 @@ import com.example.facturas_tfc.ui.firstPract.fragment.InvoicesFilterDialogFragm
 import com.example.facturas_tfc.ui.firstPract.fragment.InvoicesFilterDialogFragmentListener
 import com.example.facturas_tfc.ui.firstPract.viewmodel.InvoicesViewModel
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentListener {
     private lateinit var adapter: InvoicesListAdapter
@@ -33,8 +34,7 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
     companion object {
         private const val TAG = "VIEWNEXT InvoicesListActivity"
 
-        fun create(context: Context): Intent =
-            Intent(context, InvoicesListActivity::class.java)
+        fun create(context: Context): Intent = Intent(context, InvoicesListActivity::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +68,7 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
     }
 
     private fun initRecyclerView() {
-        adapter = InvoicesListAdapter()
+        adapter = InvoicesListAdapter(::onInvoiceClick)
         setRecyclerViewAdapter()
     }
 
@@ -82,11 +82,12 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
             navigateUpTo(MainActivity.create(this))
         }
         toolbar.setOnMenuItemClickListener { item ->
-            when(item.itemId) {
+            when (item.itemId) {
                 R.id.btn_menu_filter -> {
                     showDialog()
                     true
                 }
+
                 else -> false
             }
         }
@@ -95,11 +96,15 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
     private fun setEnvironmentSwitchListener() {
         binding.switchEnvironment.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                Toast.makeText(applicationContext, "Entorno cambiado a producción", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    applicationContext, "Entorno cambiado a producción", Toast.LENGTH_SHORT
+                ).show()
                 invoicesVM.changeEnvironment(AppEnvironment.PROD_ENVIRONMENT)
             } else {
                 Toast.makeText(
-                    applicationContext, "Entorno cambiado a desarrollo (mock data)", Toast.LENGTH_SHORT
+                    applicationContext,
+                    "Entorno cambiado a desarrollo (mock data)",
+                    Toast.LENGTH_SHORT
                 ).show()
                 invoicesVM.changeEnvironment(AppEnvironment.MOCK_ENVIRONMENT)
             }
@@ -127,6 +132,14 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
     private fun showDialog() {
         filtersDialog = InvoicesFilterDialogFragment(this)
         filtersDialog.show(supportFragmentManager, "InvoicesFilterDialogFragment")
+    }
+
+    private fun onInvoiceClick(invoice: InvoiceVO) {
+        MaterialAlertDialogBuilder(this).setTitle(resources.getString(R.string.information))
+            .setMessage(resources.getString(R.string.not_available_yet))
+            .setNeutralButton(resources.getString(R.string.close)) { dialog, _ ->
+                dialog.dismiss()
+            }.show()
     }
 
     override fun onApplyFilters(filter: Filter) {
