@@ -40,10 +40,6 @@ Lapp/src/main/java/com/example/facturas_tfc/data/network/NetworkRepository.kt,f
 Yapp/src/main/java/com/example/facturas_tfc/data/network/invoicesApi/InvoicesApiService.kt,b\7\b7dd43664a2b0eba269fe1bb8c77e6d900ae91f3
 ç
 ]app/src/main/java/com/example/facturas_tfc/data/network/invoicesApi/models/InvoiceApiModel.kt,6\c\6cb0261ce2a85b4b9472d64e0326ca73d5e77b69
-m
-=app/src/main/java/com/example/facturas_tfc/utils/Constants.kt,5\0\50426503f1c77b186ebce119c3c341284aa72d08
-o
-?app/src/main/java/com/example/facturas_tfc/utils/Environment.kt,1\c\1c2244a6d404198a338ee259565a8107010b2396
 }
 Mapp/src/main/java/com/example/facturas_tfc/data/repository/model/InvoiceVO.kt,8\a\8ac42502da25a972147e0660a1fcd2e2a6b84276
 {
@@ -54,10 +50,6 @@ Kapp/src/main/java/com/example/facturas_tfc/data/repository/AppRepository.kt,b\
 bapp/src/main/java/com/example/facturas_tfc/data/network/invoicesApi/models/InvoicesListResponse.kt,d\d\dded12724eae21a47bf290fb6a7ab4c53d519948
 |
 Lapp/src/main/java/com/example/facturas_tfc/ui/adapter/InvoicesListAdapter.kt,e\1\e1a3c231561d81e4555d2ac3edffa5cc15b43c4d
-}
-Mapp/src/main/java/com/example/facturas_tfc/utils/RetromockResourcesFactory.kt,a\a\aa61a7016d0e5661367688ee4acca8770d22885c
-g
-7app/src/main/java/com/example/facturas_tfc/utils/App.kt,f\c\fc6de306deab06985534cf81153c2ee788d24c84
 `
 0app/src/main/assets/mock_invoices_paid_list.json,9\a\9a742340a7f8728c43e0a7b613d8f44e526ed568
 X
@@ -90,14 +82,6 @@ Wapp/src/main/java/com/example/facturas_tfc/ui/firstPract/viewmodel/InvoicesView
 Kapp/src/main/java/com/example/facturas_tfc/data/repository/FilterService.kt,6\a\6abb69b697de08fdbd48cc55f0d4ad0875c256a0
 z
 Japp/src/main/java/com/example/facturas_tfc/data/repository/model/Filter.kt,8\8\888ae2bdb9a91d816fb1a8a94dcaa43701a97809
-x
-Happ/src/main/java/com/example/facturas_tfc/core/dateformat/DateFormat.kt,a\6\a622442dfa8ae6cf4556e90dfff246120c61840e
-i
-9app/src/main/java/com/example/facturas_tfc/core/colors.kt,a\0\a026a43931f71a7382f07da2ec76b38057f9ebcf
-k
-;app/src/main/java/com/example/facturas_tfc/core/currency.kt,3\f\3fdd3a71edba65b40784ea0c5fd508d6c6155836
-s
-Capp/src/main/java/com/example/facturas_tfc/core/extension/colors.kt,a\a\aa1a0a366807ad3533ae8c033dcfe4f48f0c1cfa
 d
 4app/src/main/java/com/example/facturas_tfc/di/App.kt,d\e\deadf60e124b1abbfa90dbfee3c6ec9b17fe0fe4
 t

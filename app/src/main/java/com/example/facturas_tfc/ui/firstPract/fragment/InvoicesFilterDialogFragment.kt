@@ -8,9 +8,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
 import com.example.facturas_tfc.R
-import com.example.facturas_tfc.core.extension.toStringDate
 import com.example.facturas_tfc.core.extension.asRoundedCurrency
+import com.example.facturas_tfc.core.extension.toStringDate
 import com.example.facturas_tfc.data.repository.model.Filter
+import com.example.facturas_tfc.data.repository.model.Range
 import com.example.facturas_tfc.databinding.FragmentInvoicesFilterBinding
 import com.example.facturas_tfc.ui.firstPract.viewmodel.InvoicesViewModel
 import com.google.android.material.datepicker.CalendarConstraints
@@ -28,7 +29,6 @@ import kotlin.math.floor
 
 interface InvoicesFilterDialogFragmentListener {
     fun onApplyFilters(filter: Filter)
-    fun onClearFilters()
 }
 
 class InvoicesFilterDialogFragment(
@@ -97,8 +97,10 @@ class InvoicesFilterDialogFragment(
             callback.onApplyFilters(tmpFilter)
         }
         binding.btnClearFilters.setOnClickListener {
+            tmpFilter = Filter(
+                amountRange = Range(tmpFilter.amountRange.min, tmpFilter.amountRange.max)
+            )
             initUI()
-            callback.onClearFilters()
         }
     }
 

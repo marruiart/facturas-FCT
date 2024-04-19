@@ -135,6 +135,7 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
     }
 
     private fun onInvoiceClick(invoice: InvoiceVO) {
+        Log.d(TAG, invoice.toString())
         MaterialAlertDialogBuilder(this).setTitle(resources.getString(R.string.information))
             .setMessage(resources.getString(R.string.not_available_yet))
             .setNeutralButton(resources.getString(R.string.close)) { dialog, _ ->
@@ -144,11 +145,6 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
 
     override fun onApplyFilters(filter: Filter) {
         invoicesVM.applyFilter(filter)
-        filtersDialog.dismiss()
-    }
-
-    override fun onClearFilters() {
-        Log.d(TAG, "onClearFilters")
         filtersDialog.dismiss()
     }
 
