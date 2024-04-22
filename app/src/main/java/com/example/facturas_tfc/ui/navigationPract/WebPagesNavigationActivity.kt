@@ -84,6 +84,7 @@ class WebPagesNavigationActivity : AppCompatActivity() {
 
     private fun openWebpageInWebView() {
         val webView: WebView = binding.wvWebNav
+        webView.settings.javaScriptEnabled = true
         webView.loadUrl(WEB_PAGE_URL)
     }
 }
