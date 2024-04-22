@@ -37,4 +37,8 @@
     <string name="ss_installation_menu_label">My installation</string>
     <string name="ss_energy_menu_label">Energy</string>
     <string name="ss_details_menu_label">Details</string>
+    <!-- NAVIGATION TO WEBPAGES -->
+    <string name="web_nav_explanation">From an Android application, web pages can be accessed either through the external browser or through WebViews.</string>
+    <string name="web_nav_btn_open_externally">Open external Browser</string>
+    <string name="web_nav_button_open_webview">Open Webview</string>
 </resources>

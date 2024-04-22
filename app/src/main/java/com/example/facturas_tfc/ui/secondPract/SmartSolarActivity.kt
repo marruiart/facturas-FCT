@@ -36,7 +36,7 @@ class SmartSolarActivity() : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         setWindowInsets()
-        toolbar = binding.mtoolbarSmartSolar
+        toolbar = binding.ssIncludeToolbar.mtoolbarBackButton
         initUI()
     }
 
@@ -54,7 +54,7 @@ class SmartSolarActivity() : AppCompatActivity() {
             insets
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mtoolbar_smart_solar)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.mtoolbar_back_button)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets

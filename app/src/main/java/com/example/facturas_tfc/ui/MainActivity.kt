@@ -13,6 +13,7 @@ import com.example.facturas_tfc.data.repository.model.PracticeVO
 import com.example.facturas_tfc.databinding.ActivityMainBinding
 import com.example.facturas_tfc.ui.adapter.PracticeListAdapter
 import com.example.facturas_tfc.ui.firstPract.InvoicesListActivity
+import com.example.facturas_tfc.ui.navigationPract.WebPagesNavigationActivity
 import com.example.facturas_tfc.ui.secondPract.SmartSolarActivity
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +22,8 @@ class MainActivity : AppCompatActivity() {
     private var padding: Int = 0
     private val practices = arrayListOf(
         PracticeVO(1, "Práctica 1"),
-        PracticeVO(2, "Práctica 2")
+        PracticeVO(2, "Práctica 2"),
+        PracticeVO(3, "Navegación")
     )
 
     companion object {
@@ -84,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         when (practice.id) {
             1 -> startActivity(InvoicesListActivity.create(this))
             2 -> startActivity(SmartSolarActivity.create(this))
+            3 -> startActivity(WebPagesNavigationActivity.create(this))
             else -> Log.d(TAG, "No activity to be started")
         }
     }

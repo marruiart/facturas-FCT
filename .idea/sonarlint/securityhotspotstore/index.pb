@@ -98,3 +98,5 @@ r
 Bapp/src/main/java/com/example/facturas_tfc/core/utils/Constants.kt,a\7\a7b889064fca356bdb66496171b2d97087946411
 ê
 `app/src/main/java/com/example/facturas_tfc/data/network/invoicesApi/RetromockResourcesFactory.kt,2\b\2b1b94b714dab6199a32398237d8e4bca035f7d5
+ã
+[app/src/main/java/com/example/facturas_tfc/ui/navigationPract/WebPagesNavigationActivity.kt,e\7\e75fd22fb95fc24efc0c9bbd7f9582f5cdaffc29

@@ -5,18 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/mtoolbar_smart_solar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_chevron_left"
-        app:navigationIconTint="?attr/colorPrimary"
-        app:title="Atrás"
-        app:titleTextColor="?attr/colorPrimary" />
+    <include
+        android:id="@+id/ss_include_toolbar"
+        layout="@layout/toolbar_back_button" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
