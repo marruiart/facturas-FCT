@@ -22,6 +22,7 @@ import com.marina.ruiz.globetrotting.core.dialog.FullScreenDialogFragment
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.util.Calendar
 import java.util.TimeZone
 import kotlin.math.ceil
@@ -114,12 +115,12 @@ class InvoicesFilterDialogFragment(
                 val min = slider.values[0]
                 val max = slider.values[1]
                 Log.d(
-                    TAG, "Selected min: ${slider.values[0]} == ${tmpFilter.amountRange.min} ? " +
-                            "${slider.values[0] == tmpFilter.amountRange.min}"
+                    TAG,
+                    "Selected min: ${slider.values[0]} == ${tmpFilter.amountRange.min} ? " + "${slider.values[0] == tmpFilter.amountRange.min}"
                 )
                 Log.d(
-                    TAG, "Selected max: ${slider.values[1]} == ${tmpFilter.amountRange.max} ? " +
-                            "${slider.values[1] == tmpFilter.amountRange.max}"
+                    TAG,
+                    "Selected max: ${slider.values[1]} == ${tmpFilter.amountRange.max} ? " + "${slider.values[1] == tmpFilter.amountRange.max}"
                 )
                 val selectedMin =
                     if (slider.values[0] == tmpFilter.amountRange.min) null else slider.values[0]
@@ -158,12 +159,10 @@ class InvoicesFilterDialogFragment(
         val selectedMax = ceil(tmpFilter.selectedAmount.max ?: max)
 
         binding.tvMinRange.text = getString(
-            R.string.invoices_filter_amount_range,
-            min.toInt().asRoundedCurrency()
+            R.string.invoices_filter_amount_range, min.toInt().asRoundedCurrency()
         )
         binding.tvMaxRange.text = getString(
-            R.string.invoices_filter_amount_range,
-            max.toInt().asRoundedCurrency()
+            R.string.invoices_filter_amount_range, max.toInt().asRoundedCurrency()
         )
         binding.rsAmountSlider.valueFrom = 0f
         binding.rsAmountSlider.valueTo = max
@@ -194,8 +193,7 @@ class InvoicesFilterDialogFragment(
     // CHECKBOXES LAYOUT
 
     private fun setCheckboxesLayout() {
-        binding.cbPaid.isChecked =
-            tmpFilter.state.getOrDefault(R.string.invoice_item_paid, false)
+        binding.cbPaid.isChecked = tmpFilter.state.getOrDefault(R.string.invoice_item_paid, false)
         binding.cbCancelled.isChecked =
             tmpFilter.state.getOrDefault(R.string.invoice_item_cancelled, false)
         binding.cbFixedFee.isChecked =
@@ -209,8 +207,7 @@ class InvoicesFilterDialogFragment(
     // DATEPICKER
 
     private fun showDatePickerDialog(isDateFrom: Boolean) {
-        val constraints = getCalendarConstraints(isDateFrom)
-        val datePicker = buildDatePicker(constraints)
+        val datePicker = buildDatePicker(isDateFrom)
 
         datePicker.show(requireActivity().supportFragmentManager, "DATE_PICKER")
         datePicker.addOnPositiveButtonClickListener { selectedDate ->
@@ -226,15 +223,24 @@ class InvoicesFilterDialogFragment(
 
     private fun getCalendarConstraints(isDateFrom: Boolean): CalendarConstraints {
         val openValue =
-            if (isDateFrom) getJanuaryThisYear() else MaterialDatePicker.todayInUtcMilliseconds()
+            if (isDateFrom) getSelectedDate(isDateFrom) else MaterialDatePicker.todayInUtcMilliseconds()
         return CalendarConstraints.Builder().setOpenAt(openValue)
             .setValidator(DateValidatorPointBackward.now()).build()
     }
 
-    private fun buildDatePicker(constraints: CalendarConstraints): MaterialDatePicker<Long> {
+    private fun getSelectedDate(isDateFrom: Boolean): Long {
+        MaterialDatePicker.todayInUtcMilliseconds()
+        val date = (if (isDateFrom) tmpFilter.dates.from else tmpFilter.dates.to)
+            ?: return getJanuaryThisYear()
+        return date.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
+    }
+
+    private fun buildDatePicker(isDateFrom: Boolean): MaterialDatePicker<Long> {
+        val constraints = getCalendarConstraints(isDateFrom)
+        val selectedDate = getSelectedDate(isDateFrom)
         return MaterialDatePicker.Builder.datePicker()
             .setTitleText(getString(R.string.invoices_filter_pick_date))
-            .setCalendarConstraints(constraints).build()
+            .setCalendarConstraints(constraints).setSelection(selectedDate).build()
     }
 
     private fun getJanuaryThisYear(): Long {
