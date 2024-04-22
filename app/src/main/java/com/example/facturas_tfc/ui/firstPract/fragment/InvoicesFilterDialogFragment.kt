@@ -223,7 +223,11 @@ class InvoicesFilterDialogFragment(
 
     private fun getCalendarConstraints(isDateFrom: Boolean): CalendarConstraints {
         val openValue =
-            if (isDateFrom) getSelectedDate(isDateFrom) else MaterialDatePicker.todayInUtcMilliseconds()
+            if (isDateFrom) {
+                getSelectedDate(isDateFrom)
+            } else {
+                MaterialDatePicker.todayInUtcMilliseconds()
+            }
         return CalendarConstraints.Builder().setOpenAt(openValue)
             .setValidator(DateValidatorPointBackward.now()).build()
     }
