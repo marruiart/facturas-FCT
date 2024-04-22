@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.secondPract.SmartSolarActivity">
 
     <include
         android:id="@+id/ss_include_toolbar"
@@ -14,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="?attr/actionBarSize"
-        android:padding="@dimen/dimen_size_16"
-        tools:context=".ui.secondPract.SmartSolarActivity">
+        android:padding="@dimen/dimen_size_16">
 
         <TextView
             android:id="@+id/textView"

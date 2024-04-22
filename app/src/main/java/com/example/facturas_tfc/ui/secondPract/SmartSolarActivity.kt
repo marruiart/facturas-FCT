@@ -95,16 +95,9 @@ class SmartSolarActivity() : AppCompatActivity() {
 
 
     private fun loadFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().apply {
-            val currentFragment =
-                supportFragmentManager.findFragmentById(R.id.ss_fragment_container)
-            if (currentFragment != null) {
-                remove(currentFragment)
-            }
-            replace(R.id.ss_fragment_container, fragment)
-            addToBackStack(null)
-            commit()
-        }
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.ss_fragment_container, fragment)
+            .commit()
     }
 
 }
