@@ -2,13 +2,18 @@ package com.example.facturas_tfc.ui.navigationPract
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.webkit.WebView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.facturas.utils.WEB_PAGE_URL
 import com.example.facturas_tfc.R
 import com.example.facturas_tfc.databinding.ActivityWebPagesNavigationBinding
+import com.example.facturas_tfc.ui.MainActivity
 import com.google.android.material.appbar.MaterialToolbar
 
 class WebPagesNavigationActivity : AppCompatActivity() {
@@ -55,6 +60,30 @@ class WebPagesNavigationActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
-        // TODO init listeners
+        toolbar.setNavigationOnClickListener {
+            navigateUpTo(MainActivity.create(this))
+        }
+        binding.btnOpenWebExternally.setOnClickListener {
+            openWebpageExternally()
+        }
+        binding.btnOpenWebWebview.setOnClickListener {
+            openWebpageInWebView()
+        }
+    }
+
+    private fun openWebpageExternally() {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(WEB_PAGE_URL))
+
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "No se ha encontrado navegador", Toast.LENGTH_SHORT).show()
+            openWebpageInWebView()
+        }
+    }
+
+    private fun openWebpageInWebView() {
+        val webView: WebView = binding.wvWebNav
+        webView.loadUrl(WEB_PAGE_URL)
     }
 }

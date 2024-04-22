@@ -21,21 +21,12 @@
             android:id="@+id/tv_web_nav_explanation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_size_40"
+            android:layout_marginTop="@dimen/dimen_size_16"
             android:text="@string/web_nav_explanation"
-            android:textSize="@dimen/dimen_size_16"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <Space
-            android:id="@+id/space_web_nav_top"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/btn_open_web_externally"
-            app:layout_constraintTop_toBottomOf="@+id/tv_web_nav_explanation" />
 
         <Button
             android:id="@+id/btn_open_web_externally"
@@ -43,10 +34,9 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/dimen_size_16"
             android:text="@string/web_nav_btn_open_externally"
-            app:layout_constraintBottom_toTopOf="@+id/btn_open_web_webview"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/space_web_nav_top"
+            app:layout_constraintTop_toBottomOf="@+id/tv_web_nav_explanation"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
@@ -55,10 +45,20 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/dimen_size_16"
             android:text="@string/web_nav_button_open_webview"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/btn_open_web_externally"
             app:layout_constraintStart_toStartOf="@+id/btn_open_web_externally"
             app:layout_constraintTop_toBottomOf="@+id/btn_open_web_externally" />
+
+
+        <WebView
+            android:id="@+id/wv_web_nav"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_open_web_webview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
