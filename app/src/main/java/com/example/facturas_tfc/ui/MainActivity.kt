@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "VIEWNEXT MainActivity"
 
         fun create(context: Context): Intent =
-            Intent(context, MainActivity::class.java)
+            Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
