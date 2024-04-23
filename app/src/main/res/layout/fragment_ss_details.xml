@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
         android:labelFor="@+id/et_ss_detail_cau"
-        android:text="CAU (Código Autoconsumo)"
+        android:text="@string/ss_details_cau"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
         android:labelFor="@+id/et_ss_detail_cau"
-        android:text="Estado solicitud alta autoconsumidor"
+        android:text="@string/ss_details_request_status"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_cau" />
 
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
         android:labelFor="@+id/et_ss_detail_cau"
-        android:text="Tipo autoconsumo"
+        android:text="@string/ss_details_consumption_type"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_status" />
 
@@ -72,7 +72,7 @@
         android:inputType="none"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_type_label"
-        tools:text="Con excedentes y compensación Individual - Consumo" />
+        tools:text="@string/ss_details_type" />
 
     <TextView
         android:id="@+id/tv_ss_detail_compensation_label"
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
         android:labelFor="@+id/et_ss_detail_cau"
-        android:text="Compensación de excedentes"
+        android:text="@string/ss_details_compensation_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_type" />
 
@@ -97,12 +97,12 @@
         tools:text="Precio PVPC" />
 
     <TextView
-        android:id="@+id/tv_ss_detail_potency_label"
+        android:id="@+id/tv_ss_detail_power_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
         android:labelFor="@+id/et_ss_detail_cau"
-        android:text="Potencia de instalación"
+        android:text="@string/ss_details_power_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_compensation" />
 
@@ -115,6 +115,6 @@
         android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_potency_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_power_label"
         tools:text="5kWp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

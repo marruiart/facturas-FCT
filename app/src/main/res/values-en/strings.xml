@@ -5,6 +5,21 @@
     <string name="close">Close</string>
     <!-- TEMPORARY MESSAGES -->
     <string name="not_available_yet">This functionality is not available yet</string>
+    <!-- AUTHENTICATION -->
+    <string name="auth_email_hint">Email</string>
+    <string name="auth_back_to_login_btn">Login</string>
+    <string name="auth_you_can_also">You can also</string>
+    <string name="auth_password_hint">Password</string>
+    <string name="auth_repeat_password_hint">Repeat password</string>
+    <string name="forgot_password_explanation_question">¿Has olvidado tu contraseña?</string>
+    <string name="forgot_password_explanation">Enter your email and you will receive a reset link.</string>
+    <string name="forgot_password_remind_password">Remind password</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_remember_password">Remember my password</string>
+    <string name="login_forgot_my_credentials">I forgot my credentials</string>
+    <string name="login_login_btn">Login</string>
+    <string name="login_sign_up_btn">Sign up</string>
+    <string name="sign_up_sign_up_btn">Sign up</string>
     <!-- INVOICES LIST -->
     <string name="invoices_list_title">Invoices</string>
     <string name="invoices_list_toolbar_back">Consumption</string>
@@ -37,6 +52,13 @@
     <string name="ss_installation_menu_label">My installation</string>
     <string name="ss_energy_menu_label">Energy</string>
     <string name="ss_details_menu_label">Details</string>
+    <string name="ss_energy_temporal_message">We are working on improving the app. Your solar panels continue to produce; shortly, you will be able to continue viewing your solar production. We apologize for the inconvenience.</string>
+    <string name="ss_details_cau">CAU (Self-consumption Code)</string>
+    <string name="ss_details_request_status">Status of self-consumer registration request</string>
+    <string name="ss_details_consumption_type">Type of self-consumption</string>
+    <string name="ss_details_compensation_label">Excess compensation</string>
+    <string name="ss_details_type">With surpluses and individual compensation - Consumption</string>
+    <string name="ss_details_power_label">Installation power</string>
     <!-- NAVIGATION TO WEBPAGES -->
     <string name="web_nav_explanation">From an Android application, web pages can be accessed either through the external browser or through WebViews.</string>
     <string name="web_nav_btn_open_externally">Open external Browser</string>
