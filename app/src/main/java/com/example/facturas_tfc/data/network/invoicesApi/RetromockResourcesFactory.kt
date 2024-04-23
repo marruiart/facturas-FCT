@@ -9,7 +9,7 @@ class ResourceBodyFactory : BodyFactory {
 
     @Throws(IOException::class)
     override fun create(input: String): InputStream {
-        return App.context.assets.open(input)
+        return ResourceBodyFactory::class.java.classLoader?.getResourceAsStream(input) ?: throw IOException()
     }
 
 }
