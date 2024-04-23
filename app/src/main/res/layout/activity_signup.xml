@@ -12,6 +12,7 @@
         android:id="@+id/iv_signup_iberdrola"
         android:layout_width="165dp"
         android:layout_height="70dp"
+        android:contentDescription="@string/logo_image_content_description"
         android:src="@drawable/ic_logo_iberdrola_cli"
         app:layout_constraintBottom_toTopOf="@+id/space_signup_top"
         app:layout_constraintEnd_toEndOf="parent"

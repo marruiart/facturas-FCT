@@ -3,6 +3,7 @@
     <!--  GENERAL MESSAGES  -->
     <string name="information">Information</string>
     <string name="close">Close</string>
+    <string name="logo_image_content_description">Iberdrola logo image</string>
     <!-- TEMPORARY MESSAGES -->
     <string name="not_available_yet">This functionality is not available yet</string>
     <!-- AUTHENTICATION -->
