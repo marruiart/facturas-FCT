@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -75,6 +76,7 @@ class WebPagesNavigationActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(WEB_PAGE_URL))
 
         if (intent.resolveActivity(packageManager) != null) {
+            binding.wvWebNav.visibility = View.GONE
             startActivity(intent)
         } else {
             Toast.makeText(this, "No se ha encontrado navegador", Toast.LENGTH_SHORT).show()
@@ -84,6 +86,7 @@ class WebPagesNavigationActivity : AppCompatActivity() {
 
     private fun openWebpageInWebView() {
         val webView: WebView = binding.wvWebNav
+        webView.visibility = View.VISIBLE
         webView.settings.javaScriptEnabled = true
         webView.loadUrl(WEB_PAGE_URL)
     }
