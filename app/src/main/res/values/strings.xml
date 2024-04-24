@@ -55,11 +55,10 @@
     <string name="ss_energy_menu_label">Energía</string>
     <string name="ss_details_menu_label">Detalles</string>
     <string name="ss_energy_temporal_message">Estamos trabajando en mejorar la App. Tus paneles solares siguen produciendo, en breve podrás seguir viendo tu producción solar. Sentimos las molestias.</string>
-    <string name="ss_details_cau">CAU (Código Autoconsumo)</string>
-    <string name="ss_details_request_status">Estado solicitud alta autoconsumidor</string>
+    <string name="ss_details_cau_label">CAU (Código Autoconsumo)</string>
+    <string name="ss_details_request_status_label">Estado solicitud alta autoconsumidor</string>
     <string name="ss_details_consumption_type">Tipo autoconsumo</string>
-    <string name="ss_details_compensation_label">Compensación de excedentes</string>
-    <string name="ss_details_type">Con excedentes y compensación Individual - Consumo</string>
+    <string name="ss_details_surplus_compensation_label">Compensación de excedentes</string>
     <string name="ss_details_power_label">Potencia de instalación</string>
     <!-- NAVIGATION TO WEBPAGES -->
     <string name="web_nav_explanation">Desde una aplicación Android, se puede acceder a páginas webs, mediante el navegador externo o mediante Webviews.</string>

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
         android:labelFor="@+id/et_ss_detail_cau"
-        android:text="@string/ss_details_cau"
+        android:text="@string/ss_details_cau_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,17 +31,17 @@
         tools:text="ES0021000000001994LJ1FA000" />
 
     <TextView
-        android:id="@+id/tv_ss_detail_status_label"
+        android:id="@+id/tv_ss_detail_request_status_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
-        android:labelFor="@+id/et_ss_detail_cau"
-        android:text="@string/ss_details_request_status"
+        android:labelFor="@+id/et_ss_detail_request_status"
+        android:text="@string/ss_details_request_status_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_cau" />
 
     <EditText
-        android:id="@+id/et_ss_detail_status"
+        android:id="@+id/et_ss_detail_request_status"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -49,21 +49,21 @@
         android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_status_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_request_status_label"
         tools:text="No hemos recibido ninguna solicitud de autoconsumo" />
 
     <TextView
-        android:id="@+id/tv_ss_detail_type_label"
+        android:id="@+id/tv_ss_detail_self_consumption_type_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
-        android:labelFor="@+id/et_ss_detail_cau"
+        android:labelFor="@+id/et_ss_detail_self_consumption_type_label"
         android:text="@string/ss_details_consumption_type"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_status" />
+        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_request_status" />
 
     <EditText
-        android:id="@+id/et_ss_detail_type"
+        android:id="@+id/et_ss_detail_self_consumption_type_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -71,21 +71,21 @@
         android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_type_label"
-        tools:text="@string/ss_details_type" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_self_consumption_type_label"
+        tools:text="Con excedentes y compensación Individual - Consumo" />
 
     <TextView
-        android:id="@+id/tv_ss_detail_compensation_label"
+        android:id="@+id/tv_ss_detail_surplus_compensation_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
-        android:labelFor="@+id/et_ss_detail_cau"
-        android:text="@string/ss_details_compensation_label"
+        android:labelFor="@+id/et_ss_detail_surplus_compensation"
+        android:text="@string/ss_details_surplus_compensation_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_type" />
+        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_self_consumption_type_label" />
 
     <EditText
-        android:id="@+id/et_ss_detail_compensation"
+        android:id="@+id/et_ss_detail_surplus_compensation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -93,7 +93,7 @@
         android:focusable="false"
         android:inputType="none"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_compensation_label"
+        app:layout_constraintTop_toBottomOf="@+id/tv_ss_detail_surplus_compensation_label"
         tools:text="Precio PVPC" />
 
     <TextView
@@ -101,13 +101,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_size_16"
-        android:labelFor="@+id/et_ss_detail_cau"
+        android:labelFor="@+id/et_ss_detail_installation_power"
         android:text="@string/ss_details_power_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_compensation" />
+        app:layout_constraintTop_toBottomOf="@+id/et_ss_detail_surplus_compensation" />
 
     <EditText
-        android:id="@+id/et_ss_detail_potency"
+        android:id="@+id/et_ss_detail_installation_power"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clickable="false"

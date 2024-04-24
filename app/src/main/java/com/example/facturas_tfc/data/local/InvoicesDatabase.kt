@@ -6,9 +6,10 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.facturas_tfc.data.local.converters.DateConverter
 import com.example.facturas_tfc.data.local.models.InvoiceEntity
+import com.example.facturas_tfc.data.local.models.SSDetailsEntity
 import com.example.facturas_tfc.di.App
 
-@Database(entities = [InvoiceEntity::class], version = 1)
+@Database(entities = [InvoiceEntity::class, SSDetailsEntity::class], version = 1)
 @TypeConverters(DateConverter::class)
 abstract class InvoicesDatabase : RoomDatabase() {
 
@@ -31,5 +32,6 @@ abstract class InvoicesDatabase : RoomDatabase() {
         }
     }
 
+    abstract fun smartSolarDao(): SmartSolarDao
     abstract fun invoicesDao(): InvoiceDao
 }

@@ -54,11 +54,10 @@
     <string name="ss_energy_menu_label">Energy</string>
     <string name="ss_details_menu_label">Details</string>
     <string name="ss_energy_temporal_message">We are working on improving the app. Your solar panels continue to produce; shortly, you will be able to continue viewing your solar production. We apologize for the inconvenience.</string>
-    <string name="ss_details_cau">CAU (Self-consumption Code)</string>
-    <string name="ss_details_request_status">Status of self-consumer registration request</string>
+    <string name="ss_details_cau_label">CAU (Self-consumption Code)</string>
+    <string name="ss_details_request_status_label">Status of self-consumer registration request</string>
     <string name="ss_details_consumption_type">Type of self-consumption</string>
-    <string name="ss_details_compensation_label">Excess compensation</string>
-    <string name="ss_details_type">With surpluses and individual compensation - Consumption</string>
+    <string name="ss_details_surplus_compensation_label">Surplus compensation</string>
     <string name="ss_details_power_label">Installation power</string>
     <!-- NAVIGATION TO WEBPAGES -->
     <string name="web_nav_explanation">From an Android application, web pages can be accessed either through the external browser or through WebViews.</string>
