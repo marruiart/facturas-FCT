@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">facturas-TFC</string>
+    <string name="app_name" translatable="false">facturas-FCT</string>
     <!--  GENERAL MESSAGES  -->
     <string name="information">Información</string>
     <string name="close">Cerrar</string>

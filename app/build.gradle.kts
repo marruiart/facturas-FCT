@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.facturas_tfc"
+    namespace = "com.marinaruiz.facturas_fct"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.facturas_tfc"
+        applicationId = "com.marinaruiz.facturas_fct"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
