@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("org.jetbrains.kotlin.kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -62,4 +63,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     // to be able to use observers
     implementation(libs.androidx.room.ktx)
+    // FIREBASE
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
 }

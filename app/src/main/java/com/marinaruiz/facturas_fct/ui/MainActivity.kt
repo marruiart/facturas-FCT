@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -12,6 +13,7 @@ import com.marinaruiz.facturas_fct.R
 import com.marinaruiz.facturas_fct.data.repository.model.PracticeVO
 import com.marinaruiz.facturas_fct.databinding.ActivityMainBinding
 import com.marinaruiz.facturas_fct.ui.adapter.PracticeListAdapter
+import com.marinaruiz.facturas_fct.ui.auth.LoginActivity
 import com.marinaruiz.facturas_fct.ui.firstPract.InvoicesListActivity
 import com.marinaruiz.facturas_fct.ui.navigationPract.WebPagesNavigationActivity
 import com.marinaruiz.facturas_fct.ui.secondPract.SmartSolarActivity
@@ -19,6 +21,7 @@ import com.marinaruiz.facturas_fct.ui.secondPract.SmartSolarActivity
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: PracticeListAdapter
     private lateinit var binding: ActivityMainBinding
+    private val mainVM: MainViewModel by viewModels()
     private var padding: Int = 0
     private val practices = arrayListOf(
         PracticeVO(1, "Práctica 1"),
@@ -61,10 +64,22 @@ class MainActivity : AppCompatActivity() {
     private fun initUI() {
         initRecyclerView()
         initListeners()
+        initObservers()
     }
 
     private fun initListeners() {
-        // TODO init listeners
+        binding.btnLogout.setOnClickListener {
+            mainVM.logout()
+        }
+    }
+
+    private fun initObservers() {
+        mainVM.uid.observe(this){ uid ->
+            if(uid == null) {
+                startActivity(LoginActivity.create(this))
+                this.finish()
+            }
+        }
     }
 
     private fun initRecyclerView() {
