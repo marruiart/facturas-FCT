@@ -4,15 +4,21 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marinaruiz.facturas_fct.R
 import com.marinaruiz.facturas_fct.core.ErrorResponse
+import com.marinaruiz.facturas_fct.core.extension.comparePassword
+import com.marinaruiz.facturas_fct.core.extension.isValidEmail
+import com.marinaruiz.facturas_fct.core.extension.isValidPassword
+import com.marinaruiz.facturas_fct.core.extension.validateEmailAndPassword
 import com.marinaruiz.facturas_fct.databinding.ActivitySignupBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
 
@@ -23,7 +29,7 @@ class SignupActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "VIEWNEXT SignupActivity"
-
+        private const val MIN_PASSWORD_LENGTH = 6
         fun create(context: Context): Intent = Intent(context, SignupActivity::class.java)
     }
 
@@ -59,10 +65,59 @@ class SignupActivity : AppCompatActivity() {
 
     private fun initListeners() {
         with(binding) {
+            val etEmail = etSignupEmail
+            val etPassword = etSignupPassword
+            val etPasswordRepeat = etSignupPasswordRepeat
+            etEmail.doOnTextChanged { text, _, _, _ ->
+                val valid = text.toString().isValidEmail()
+                Log.d(TAG, "EMAIL: ${valid}")
+                btnSignupRegister.isEnabled = valid
+                if (!text.isNullOrEmpty() && !valid) {
+                    etEmail.backgroundTintList = getColorStateList(R.color.md_theme_light_error)
+                } else {
+                    etEmail.backgroundTintList = getColorStateList(R.color.black)
+                }
+            }
+            etPassword.doOnTextChanged { text, _, _, _ ->
+                val valid = text.toString().isValidPassword() && etPassword.text.toString()
+                    .comparePassword(etPasswordRepeat.text.toString())
+                Log.d(TAG, "PASSWORD: ${valid}")
+                btnSignupRegister.isEnabled = valid && etEmail.text.toString().isValidEmail()
+                if (!text.isNullOrEmpty() && !valid) {
+                    etPassword.backgroundTintList = getColorStateList(R.color.md_theme_light_error)
+                } else {
+                    etPassword.backgroundTintList = getColorStateList(R.color.black)
+                }
+            }
+            etPasswordRepeat.doOnTextChanged { text, _, _, _ ->
+                val valid = text.toString().isValidPassword() && etPassword.text.toString()
+                    .comparePassword(etPasswordRepeat.text.toString())
+                Log.d(TAG, "PASSWORD: ${valid}")
+                btnSignupRegister.isEnabled = valid && etEmail.text.toString().isValidEmail()
+                if (!text.isNullOrEmpty() && !valid) {
+                    etPasswordRepeat.backgroundTintList =
+                        getColorStateList(R.color.md_theme_light_error)
+                } else {
+                    etPasswordRepeat.backgroundTintList = getColorStateList(R.color.black)
+                }
+            }
             btnSignupRegister.setOnClickListener {
-                val email = etSignupEmail.text
-                val password = etSignupPassword.text
-                authVM.signUp("marina@gmail.com", "Aa123456") // TODO change this
+                val email = etEmail.text.toString()
+                val password = etPassword.text.toString()
+                val passwordRepeat = etPasswordRepeat.text.toString()
+                if (validateEmailAndPassword(email, password) && password.comparePassword(
+                        passwordRepeat
+                    )
+                ) {
+                    authVM.signUp(email, password)
+                } else {
+                    showErrorDialog(
+                        ErrorResponse(
+                            "Email or password not valid",
+                            "Password must contain at least 6 characters"
+                        )
+                    )
+                }
             }
             btnSignupBackLogin.setOnClickListener { navigateLogin() }
             btnSignupEye.setOnCheckedChangeListener { buttonView, isChecked ->

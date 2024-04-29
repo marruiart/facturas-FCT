@@ -4,17 +4,21 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marinaruiz.facturas_fct.R
 import com.marinaruiz.facturas_fct.core.ErrorResponse
 import com.marinaruiz.facturas_fct.core.NetworkConnectionManager
+import com.marinaruiz.facturas_fct.core.extension.isValidEmail
+import com.marinaruiz.facturas_fct.core.extension.isValidPassword
 import com.marinaruiz.facturas_fct.databinding.ActivityLoginBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
 
@@ -67,10 +71,32 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initListeners() {
         with(binding) {
+            val etEmail = etLoginUser
+            val etPassword = etLoginPassword
+            etEmail.doOnTextChanged { text, _, _, _ ->
+                val valid = text.toString().isValidEmail()
+                Log.d(TAG, "EMAIL: ${valid}")
+                btnLoginAccept.isEnabled = valid && etPassword.text.toString().isValidPassword()
+                if (!text.isNullOrEmpty() && !valid) {
+                    etEmail.backgroundTintList = getColorStateList(R.color.md_theme_light_error)
+                } else {
+                    etEmail.backgroundTintList = getColorStateList(R.color.black)
+                }
+            }
+            etPassword.doOnTextChanged { text, _, _, _ ->
+                val valid = text.toString().isValidPassword()
+                Log.d(TAG, "PASSWORD: ${valid}")
+                btnLoginAccept.isEnabled = valid && etEmail.text.toString().isValidEmail()
+                if (!text.isNullOrEmpty() && !valid) {
+                    etPassword.backgroundTintList = getColorStateList(R.color.md_theme_light_error)
+                } else {
+                    etPassword.backgroundTintList = getColorStateList(R.color.black)
+                }
+            }
             btnLoginAccept.setOnClickListener {
-                val email = etLoginUser.text
-                val password = etLoginPassword.text
-                authVM.login("marina@gmail.com", "Aa123456") // TODO change this
+                val email = etEmail.text.toString()
+                val password = etPassword.text.toString()
+                authVM.login(email, password)
             }
             btnLoginSignup.setOnClickListener { navigateSignup() }
             btnLoginForgotPassword.setOnClickListener { navigateForgotPassword() }
