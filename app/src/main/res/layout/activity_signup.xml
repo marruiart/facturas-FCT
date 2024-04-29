@@ -52,6 +52,16 @@
         app:layout_constraintStart_toStartOf="@+id/et_signup_email"
         app:layout_constraintTop_toBottomOf="@+id/et_signup_email" />
 
+    <CheckBox
+        android:id="@+id/btn_signup_eye"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/ic_eye"
+        android:buttonTint="?attr/colorOnSurface"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signup_password"
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_password"
+        app:layout_constraintTop_toTopOf="@+id/et_signup_password" />
+
     <EditText
         android:id="@+id/et_signup_password_repeat"
         android:layout_width="match_parent"

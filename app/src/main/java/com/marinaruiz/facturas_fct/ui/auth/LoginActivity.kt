@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -67,10 +68,17 @@ class LoginActivity : AppCompatActivity() {
     private fun initListeners() {
         with(binding) {
             btnLoginAccept.setOnClickListener {
-                authVM.login("marina@gmail.com", "Aa123456")
+                val email = etLoginUser.text
+                val password = etLoginPassword.text
+                authVM.login("marina@gmail.com", "Aa123456") // TODO change this
             }
             btnLoginSignup.setOnClickListener { navigateSignup() }
             btnLoginForgotPassword.setOnClickListener { navigateForgotPassword() }
+            btnLoginEye.setOnCheckedChangeListener { buttonView, isChecked ->
+                authVM.showPassword(
+                    buttonView as CheckBox, isChecked, etLoginPassword
+                )
+            }
         }
 
     }

@@ -1,6 +1,9 @@
 package com.marinaruiz.facturas_fct.ui.auth
 
 import android.util.Log
+import android.view.View
+import android.widget.CheckBox
+import android.widget.EditText
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -10,12 +13,14 @@ import com.marinaruiz.facturas_fct.core.ErrorResponse
 import com.marinaruiz.facturas_fct.data.network.firebase.model.LoginResult
 import com.marinaruiz.facturas_fct.domain.LoginUseCase
 import com.marinaruiz.facturas_fct.domain.SignUpUseCase
+import com.marinaruiz.facturas_fct.domain.TogglePasswordVisibilityUseCase
 import kotlinx.coroutines.launch
 
 class AuthViewModel : ViewModel() {
 
     private val loginUseCase = LoginUseCase()
     private val signUpUseCase = SignUpUseCase()
+    private val togglePasswordVisibilityUseCase = TogglePasswordVisibilityUseCase()
 
     private val _allowAccess = MutableLiveData(false)
     val allowAccess: LiveData<Boolean> = _allowAccess
@@ -32,7 +37,6 @@ class AuthViewModel : ViewModel() {
     }
 
     init {
-
         loginUseCase.uid.observeForever(observer)
     }
 
@@ -61,6 +65,10 @@ class AuthViewModel : ViewModel() {
                 _showErrorDialog.value = result.error
             }
         }
+    }
+
+    fun showPassword(cbToggle: CheckBox, isChecked: Boolean, vararg editTexts: EditText) {
+        togglePasswordVisibilityUseCase(cbToggle, isChecked, *editTexts)
     }
 
     override fun onCleared() {

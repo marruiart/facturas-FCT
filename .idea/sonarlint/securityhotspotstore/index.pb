@@ -136,3 +136,7 @@ u
 Eapp/src/main/java/com/marinaruiz/facturas_fct/domain/LogoutUseCase.kt,0\a\0ad88bb0993b1424f9e4fee07301df5b28dc5ab2
 q
 Aapp/src/main/java/com/marinaruiz/facturas_fct/ui/MainViewModel.kt,5\8\581ae6e61de68f692311101ba7e67b11ede59da5
+{
+Kapp/src/main/java/com/marinaruiz/facturas_fct/domain/ShowPasswordUseCase.kt,0\4\0483cbbbf7361b85be4c6fe6e5ca8bf919a9b19a
+‡
+Wapp/src/main/java/com/marinaruiz/facturas_fct/domain/TogglePasswordVisibilityUseCase.kt,4\8\48fe5b12cf0cbe1b4c13268483e8c0ea5fc0eef7
