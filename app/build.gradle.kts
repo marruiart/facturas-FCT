@@ -66,4 +66,6 @@ dependencies {
     // FIREBASE
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
+    // SECURED SHARED PREFERENCES
+    implementation(libs.androidx.security.crypto)
 }

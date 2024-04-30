@@ -1,7 +1,7 @@
 package com.marinaruiz.facturas_fct.ui.auth
 
+import android.content.Context
 import android.util.Log
-import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.lifecycle.LiveData
@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marinaruiz.facturas_fct.core.ErrorResponse
+import com.marinaruiz.facturas_fct.core.SecureSharedPrefs
 import com.marinaruiz.facturas_fct.data.network.firebase.model.LoginResult
 import com.marinaruiz.facturas_fct.domain.LoginUseCase
 import com.marinaruiz.facturas_fct.domain.SignUpUseCase
@@ -69,6 +70,18 @@ class AuthViewModel : ViewModel() {
 
     fun showPassword(cbToggle: CheckBox, isChecked: Boolean, vararg editTexts: EditText) {
         togglePasswordVisibilityUseCase(cbToggle, isChecked, *editTexts)
+    }
+
+    fun saveInSecSharedPrefs(context: Context, key: String, data: String?) {
+        val sharedPreferences = SecureSharedPrefs.getSecSharedPreferences(context)
+        val editor = sharedPreferences.edit()
+        editor.putString(key, data)
+        editor.apply()
+    }
+
+    fun retrieveFromSecSharedPreferences(context: Context, key: String): String? {
+        val sharedPreferences = SecureSharedPrefs.getSecSharedPreferences(context)
+        return sharedPreferences.getString(key, null)
     }
 
     override fun onCleared() {

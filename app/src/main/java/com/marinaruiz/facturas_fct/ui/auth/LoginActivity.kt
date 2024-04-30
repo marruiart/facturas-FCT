@@ -32,7 +32,6 @@ class LoginActivity : AppCompatActivity() {
         private const val TAG = "VIEWNEXT LoginActivity"
 
         fun create(context: Context): Intent = Intent(context, LoginActivity::class.java)
-
     }
 
     init {
@@ -65,8 +64,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        autocompleteEmail()
         initListeners()
         initObservables()
+    }
+
+    private fun autocompleteEmail() {
+        val email = authVM.retrieveFromSecSharedPreferences(this, "email")
+        if (email != null) {
+            binding.etLoginUser.setText(email)
+        }
     }
 
     private fun initListeners() {
@@ -96,6 +103,11 @@ class LoginActivity : AppCompatActivity() {
             btnLoginAccept.setOnClickListener {
                 val email = etEmail.text.toString()
                 val password = etPassword.text.toString()
+                val saveCredentials = cbLoginRememberPassword.isChecked
+                if (saveCredentials) {
+                    authVM.saveInSecSharedPrefs(this@LoginActivity, "email", email)
+                    authVM.saveInSecSharedPrefs(this@LoginActivity, "pass", password)
+                }
                 authVM.login(email, password)
             }
             btnLoginSignup.setOnClickListener { navigateSignup() }
