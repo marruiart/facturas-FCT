@@ -12,7 +12,7 @@
     <string name="auth_you_can_also">You can also</string>
     <string name="auth_password_hint">Password</string>
     <string name="auth_repeat_password_hint">Repeat password</string>
-    <string name="forgot_password_explanation_question">¿Has olvidado tu contraseña?</string>
+    <string name="forgot_password_explanation_question">¿Did you forget your password?</string>
     <string name="forgot_password_explanation">Enter your email and you will receive a reset link.</string>
     <string name="forgot_password_remind_password">Remind password</string>
     <string name="login_username_hint">Username</string>

@@ -138,7 +138,11 @@ Aapp/src/main/java/com/marinaruiz/facturas_fct/ui/MainViewModel.kt,5\8\581ae6e6
 Wapp/src/main/java/com/marinaruiz/facturas_fct/domain/TogglePasswordVisibilityUseCase.kt,4\8\48fe5b12cf0cbe1b4c13268483e8c0ea5fc0eef7
 z
 Japp/src/main/java/com/marinaruiz/facturas_fct/core/extension/validation.kt,5\f\5fa39404153698fcc0f7f4f3dff5af99a3351c5b
-y
-Iapp/src/main/java/com/marinaruiz/facturas_fct/core/SecureSharedPrefs.java,e\9\e95ec294780670055eff83d5b49def685e32995a
 w
 Gapp/src/main/java/com/marinaruiz/facturas_fct/core/SecureSharedPrefs.kt,0\7\07e7b2280961dc54c89034ac9236df13794e12ed
+}
+Mapp/src/main/java/com/marinaruiz/facturas_fct/domain/ForgotPasswordUseCase.kt,b\5\b55a0e3c6e20cb6c4a30f6a4453591bd1e312de5
+ê
+`app/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/model/ResetPasswordResult.kt,d\e\de9dacf648b162152e6137af90893b2e6dc565bf
+X
+(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e

@@ -1,6 +1,5 @@
 package com.marinaruiz.facturas_fct.ui.auth
 
-import android.content.Context
 import android.util.Log
 import android.widget.CheckBox
 import android.widget.EditText
@@ -10,17 +9,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marinaruiz.facturas_fct.core.ErrorResponse
-import com.marinaruiz.facturas_fct.core.SecureSharedPrefs
+import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.retrieveFromSecSharedPrefs
+import com.marinaruiz.facturas_fct.core.extension.toZonedDateTime
 import com.marinaruiz.facturas_fct.data.network.firebase.model.LoginResult
 import com.marinaruiz.facturas_fct.domain.LoginUseCase
+import com.marinaruiz.facturas_fct.domain.LogoutUseCase
 import com.marinaruiz.facturas_fct.domain.SignUpUseCase
 import com.marinaruiz.facturas_fct.domain.TogglePasswordVisibilityUseCase
 import kotlinx.coroutines.launch
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 
 class AuthViewModel : ViewModel() {
 
     private val loginUseCase = LoginUseCase()
     private val signUpUseCase = SignUpUseCase()
+    val logoutUseCase = LogoutUseCase()
     private val togglePasswordVisibilityUseCase = TogglePasswordVisibilityUseCase()
 
     private val _allowAccess = MutableLiveData(false)
@@ -68,20 +72,18 @@ class AuthViewModel : ViewModel() {
         }
     }
 
+    fun isSessionExpired(): Boolean {
+        val yesterday = ZonedDateTime.now(ZoneOffset.UTC).minusDays(1)
+        val loginTime: String? = retrieveFromSecSharedPrefs("loginTime")
+        loginTime?.let {
+            val loginTimeZDT = loginTime.toZonedDateTime()
+            return loginTimeZDT.isBefore(yesterday)
+        }
+        return false
+    }
+
     fun showPassword(cbToggle: CheckBox, isChecked: Boolean, vararg editTexts: EditText) {
         togglePasswordVisibilityUseCase(cbToggle, isChecked, *editTexts)
-    }
-
-    fun saveInSecSharedPrefs(context: Context, key: String, data: String?) {
-        val sharedPreferences = SecureSharedPrefs.getSecSharedPreferences(context)
-        val editor = sharedPreferences.edit()
-        editor.putString(key, data)
-        editor.apply()
-    }
-
-    fun retrieveFromSecSharedPreferences(context: Context, key: String): String? {
-        val sharedPreferences = SecureSharedPrefs.getSecSharedPreferences(context)
-        return sharedPreferences.getString(key, null)
     }
 
     override fun onCleared() {

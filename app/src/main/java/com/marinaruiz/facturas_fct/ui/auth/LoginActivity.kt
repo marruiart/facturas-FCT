@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -17,16 +16,23 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marinaruiz.facturas_fct.R
 import com.marinaruiz.facturas_fct.core.ErrorResponse
 import com.marinaruiz.facturas_fct.core.NetworkConnectionManager
+import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.removePasswordInSharedPrefs
+import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.retrieveFromSecSharedPrefs
+import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.saveInSecSharedPrefs
 import com.marinaruiz.facturas_fct.core.extension.isValidEmail
-import com.marinaruiz.facturas_fct.core.extension.isValidPassword
+import com.marinaruiz.facturas_fct.core.extension.toIsoDateFormat
 import com.marinaruiz.facturas_fct.databinding.ActivityLoginBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val authVM: AuthViewModel by viewModels()
     private val network = NetworkConnectionManager.getInstance(lifecycleScope)
     private var padding: Int = 0
+    private var email: String = ""
+    private var password: String = ""
 
     companion object {
         private const val TAG = "VIEWNEXT LoginActivity"
@@ -64,13 +70,29 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        checkAccess()
         autocompleteEmail()
         initListeners()
         initObservables()
     }
 
+    private fun checkAccess() {
+        val isSessionExpired = authVM.isSessionExpired()
+        val rememberPass = isPasswordRemembered()
+        if (isSessionExpired) {
+            showErrorDialog(
+                ErrorResponse(
+                    "Sesión expirada", "Por favor, vuelva a entrar con sus credenciales"
+                )
+            )
+        }
+        if (isSessionExpired || rememberPass) {
+            authVM.logoutUseCase()
+        }
+    }
+
     private fun autocompleteEmail() {
-        val email = authVM.retrieveFromSecSharedPreferences(this, "email")
+        val email = retrieveFromSecSharedPrefs("email")
         if (email != null) {
             binding.etLoginUser.setText(email)
         }
@@ -80,35 +102,34 @@ class LoginActivity : AppCompatActivity() {
         with(binding) {
             val etEmail = etLoginUser
             val etPassword = etLoginPassword
-            etEmail.doOnTextChanged { text, _, _, _ ->
-                val valid = text.toString().isValidEmail()
-                Log.d(TAG, "EMAIL: ${valid}")
-                btnLoginAccept.isEnabled = valid && etPassword.text.toString().isValidPassword()
-                if (!text.isNullOrEmpty() && !valid) {
+            etEmail.doOnTextChanged { email, _, _, _ ->
+                val valid = email.toString().isValidEmail()
+                btnLoginAccept.isEnabled = valid && etPassword.text.isNotEmpty()
+                if (!email.isNullOrEmpty() && !valid) {
                     etEmail.backgroundTintList = getColorStateList(R.color.md_theme_light_error)
                 } else {
                     etEmail.backgroundTintList = getColorStateList(R.color.black)
                 }
             }
             etPassword.doOnTextChanged { text, _, _, _ ->
-                val valid = text.toString().isValidPassword()
-                Log.d(TAG, "PASSWORD: ${valid}")
-                btnLoginAccept.isEnabled = valid && etEmail.text.toString().isValidEmail()
-                if (!text.isNullOrEmpty() && !valid) {
-                    etPassword.backgroundTintList = getColorStateList(R.color.md_theme_light_error)
-                } else {
-                    etPassword.backgroundTintList = getColorStateList(R.color.black)
-                }
+                val notEmpty = etPassword.text.isNotEmpty()
+                btnLoginAccept.isEnabled = notEmpty && etEmail.text.toString().isValidEmail()
             }
             btnLoginAccept.setOnClickListener {
-                val email = etEmail.text.toString()
-                val password = etPassword.text.toString()
+                email = etEmail.text.toString()
+                password = etPassword.text.toString()
                 val saveCredentials = cbLoginRememberPassword.isChecked
-                if (saveCredentials) {
-                    authVM.saveInSecSharedPrefs(this@LoginActivity, "email", email)
-                    authVM.saveInSecSharedPrefs(this@LoginActivity, "pass", password)
-                }
                 authVM.login(email, password)
+                saveInSecSharedPrefs(
+                    "loginTime",
+                    ZonedDateTime.now(ZoneOffset.UTC).toIsoDateFormat(locale = null)
+                )
+                saveInSecSharedPrefs("email", email)
+                if (saveCredentials) {
+                    saveInSecSharedPrefs("pass", password)
+                } else {
+                    removePasswordInSharedPrefs()
+                }
             }
             btnLoginSignup.setOnClickListener { navigateSignup() }
             btnLoginForgotPassword.setOnClickListener { navigateForgotPassword() }
@@ -122,18 +143,26 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initObservables() {
-
-        authVM.allowAccess.observe(this) { allow ->
-            if (allow) {
-                navigateMain()
-            }
-        }
+        observeAllowAccess()
         authVM.showErrorDialog.observe(this) { showError ->
             showError?.let {
                 showErrorDialog(showError)
             }
         }
     }
+
+    private fun observeAllowAccess() {
+        authVM.allowAccess.observe(this) { allow ->
+            var rememberPass = isPasswordRemembered()
+            if (allow && rememberPass || email.isNotEmpty() && password.isNotEmpty()) {
+                navigateMain()
+            } else if (allow && !rememberPass) {
+                authVM.logoutUseCase()
+            }
+        }
+    }
+
+    private fun isPasswordRemembered(): Boolean = retrieveFromSecSharedPrefs("pass") != null
 
     private fun showErrorDialog(error: ErrorResponse) {
         MaterialAlertDialogBuilder(this).setTitle("Error: " + error.code).setMessage(error.message)
