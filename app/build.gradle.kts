@@ -1,15 +1,17 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("org.jetbrains.kotlin.kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.example.facturas_tfc"
+    namespace = "com.marinaruiz.facturas_fct"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.facturas_tfc"
-        minSdk = 24
+        applicationId = "com.marinaruiz.facturas_fct"
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -33,6 +35,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -42,7 +48,25 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // RETROFIT
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    // RETROMOCK
+    implementation(libs.retromock)
+    // ROOM
+    kapt(libs.room.compiler)
+    implementation(libs.androidx.room.runtime)
+    // to be able to use observers
+    implementation(libs.androidx.room.ktx)
+    // FIREBASE
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.config)
+    // SECURED SHARED PREFERENCES
+    implementation(libs.androidx.security.crypto)
 }

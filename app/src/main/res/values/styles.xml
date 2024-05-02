@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="boton_login_registrate">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:background">@drawable/boton_primario_gris_muy_claro</item>
+        <item name="android:textColor">@color/verde</item>
+        <item name="android:layout_marginLeft">@dimen/dimen_size_40</item>
+        <item name="android:layout_marginRight">@dimen/dimen_size_40</item>
+        <item name="android:layout_marginTop">@dimen/dimen_size_16</item>
+        <item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="DatepickerStyle" parent="Widget.Material3.Button.TonalButton">
+        <item name="backgroundTint">?attr/colorSurfaceVariant</item>
+    </style>
+
+    <style name="Semirounded" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+</resources>
+

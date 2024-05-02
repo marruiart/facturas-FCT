@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".ui.firstPract.fragment.InvoicesFilterDialogFragment">
+
+    <include
+        android:id="@+id/include_app_top_bar"
+        layout="@layout/toolbar_invoices_filter_collapsable" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="?attr/dialogPreferredPadding">
+
+            <TextView
+                android:id="@+id/tv_issue_date_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="12dp"
+                android:text="@string/invoices_filter_by_issue_date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toTopOf="@id/constraintLayout" />
+
+            <TextView
+                android:id="@+id/tv_issue_date_from_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_issue_date_from"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/tv_issue_date_title" />
+
+            <TextView
+                android:id="@+id/tv_issue_date_to_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_issue_date_to"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toEndOf="@id/tv_issue_date_from_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_issue_date_title" />
+
+            <Button
+                android:id="@+id/dp_issue_date_from_date"
+                style="@style/DatepickerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/invoices_filter_default_date"
+                app:layout_constraintStart_toStartOf="@id/tv_issue_date_from_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_issue_date_from_label"
+                app:shapeAppearance="@style/Semirounded" />
+
+            <Button
+                android:id="@+id/dp_issue_date_to_date"
+                style="@style/DatepickerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/invoices_filter_default_date"
+                app:layout_constraintStart_toStartOf="@+id/tv_issue_date_to_label"
+                app:layout_constraintTop_toBottomOf="@+id/tv_issue_date_to_label"
+                app:shapeAppearance="@style/Semirounded" />
+
+            <View
+                android:id="@+id/divider_issue_amount"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="?attr/dialogPreferredPadding"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/tv_amount_title"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/dp_issue_date_from_date" />
+
+            <TextView
+                android:id="@+id/tv_amount_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="?attr/dialogPreferredPadding"
+                android:paddingBottom="12dp"
+                android:text="@string/invoices_filter_by_amount"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/divider_issue_amount" />
+
+            <TextView
+                android:id="@+id/tv_min_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/rs_amount_slider"
+                app:layout_constraintTop_toBottomOf="@+id/tv_middle_range"
+                tools:text="1€" />
+
+            <TextView
+                android:id="@+id/tv_middle_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_max_range"
+                app:layout_constraintStart_toEndOf="@+id/tv_min_range"
+                app:layout_constraintTop_toBottomOf="@+id/tv_amount_title"
+                tools:text="1€ - 300€" />
+
+            <TextView
+                android:id="@+id/tv_max_range"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/rs_amount_slider"
+                app:layout_constraintTop_toBottomOf="@+id/tv_middle_range"
+                tools:text="300€" />
+
+            <com.google.android.material.slider.RangeSlider
+                android:id="@+id/rs_amount_slider"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-8dp"
+                android:valueFrom="0.0"
+                android:valueTo="100.0"
+                android:stepSize="1.0"
+                app:layout_constraintBottom_toTopOf="@+id/divider_amount_state"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_min_range"
+                app:values="@array/initial_slider_values" />
+
+            <View
+                android:id="@+id/divider_amount_state"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="?attr/dialogPreferredPadding"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintBottom_toTopOf="@+id/tv_state_title"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/rs_amount_slider" />
+
+            <TextView
+                android:id="@+id/tv_state_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="?attr/dialogPreferredPadding"
+                android:paddingBottom="12dp"
+                android:text="@string/invoices_filter_by_state"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/guideline_right"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@id/divider_amount_state" />
+
+            <CheckBox
+                android:id="@+id/cb_paid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_paid"
+                app:layout_constraintStart_toStartOf="@id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/tv_state_title" />
+
+            <CheckBox
+                android:id="@+id/cb_cancelled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_cancelled"
+                app:layout_constraintStart_toStartOf="@+id/cb_paid"
+                app:layout_constraintTop_toBottomOf="@+id/cb_paid" />
+
+            <CheckBox
+                android:id="@+id/cb_fixed_fee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_fixed_fee"
+                app:layout_constraintStart_toStartOf="@+id/cb_cancelled"
+                app:layout_constraintTop_toBottomOf="@+id/cb_cancelled" />
+
+            <CheckBox
+                android:id="@+id/cb_pending"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_pending"
+                app:layout_constraintStart_toStartOf="@+id/cb_fixed_fee"
+                app:layout_constraintTop_toBottomOf="@+id/cb_fixed_fee" />
+
+            <CheckBox
+                android:id="@+id/cb_payment_plan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_payment_plan"
+                app:layout_constraintStart_toStartOf="@+id/cb_pending"
+                app:layout_constraintTop_toBottomOf="@+id/cb_pending" />
+
+            <Button
+                android:id="@+id/btn_apply"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?attr/dialogPreferredPadding"
+                android:text="@string/invoices_filter_apply_btn"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+                app:layout_constraintStart_toStartOf="@+id/guideline_left"
+                app:layout_constraintTop_toBottomOf="@+id/cb_payment_plan" />
+
+            <Button
+                android:id="@+id/btn_clear_filters"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="270dp"
+                android:layout_marginTop="16dp"
+                android:layout_height="wrap_content"
+                android:text="@string/invoices_filter_remove_btn"
+                android:textColor="?attr/colorSecondary"
+                app:layout_constraintEnd_toEndOf="@+id/btn_apply"
+                app:layout_constraintStart_toStartOf="@+id/btn_apply"
+                app:layout_constraintTop_toBottomOf="@+id/btn_apply" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="?attr/dialogPreferredPadding" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="?attr/dialogPreferredPadding" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

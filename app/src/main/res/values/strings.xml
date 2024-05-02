@@ -1,3 +1,67 @@
 <resources>
-    <string name="app_name">facturas-TFC</string>
+    <string name="app_name" translatable="false">facturas-FCT</string>
+    <!--  GENERAL MESSAGES  -->
+    <string name="information">Información</string>
+    <string name="close">Cerrar</string>
+    <string name="logo_image_content_description">Imagen del logo de Iberdrola</string>
+    <!-- TEMPORARY MESSAGES -->
+    <string name="not_available_yet">Esta funcionalidad aún no está disponible</string>
+    <!-- AUTHENTICATION -->
+    <string name="auth_email_hint">Correo electrónico</string>
+    <string name="auth_you_can_also">También puedes</string>
+    <string name="auth_back_to_login_btn">Iniciar sesión</string>
+    <string name="auth_password_hint">Contraseña</string>
+    <string name="auth_repeat_password_hint">Repetir contraseña</string>
+    <string name="forgot_password_explanation_question">Did you forgot your password?</string>
+    <string name="forgot_password_explanation">Indica tu email y recibirás un enlace de reinicio.</string>
+    <string name="forgot_password_remind_password">Recordar contraseña</string>
+    <string name="login_username_hint">Usuario</string>
+    <string name="login_remember_password">Recordar contraseña</string>
+    <string name="login_forgot_my_credentials">He olvidado mis datos</string>
+    <string name="login_login_btn">Entrar</string>
+    <string name="login_sign_up_btn">Registrate</string>
+    <string name="sign_up_sign_up_btn">Registrarme</string>
+    <!-- INVOICES LIST -->
+    <string name="invoices_list_title">Facturas</string>
+    <string name="invoices_list_toolbar_back">Consumo</string>
+    <string name="invoices_list_empty">No se han encontrado facturas</string>
+    <!-- INVOICES LIST ITEM -->
+    <string name="invoice_item_paid">Pagada</string>
+    <string name="invoice_item_cancelled">Anulada</string>
+    <string name="invoice_item_fixed_fee">Cuota fija</string>
+    <string name="invoice_item_pending">Pendiente de pago</string>
+    <string name="invoice_item_payment_plan">Plan de pago</string>
+    <string name="invoice_item_state_empty" translatable="false" />
+    <!-- INVOICES FILTER -->
+    <string name="invoices_filter_title">Filtrar facturas</string>
+    <string name="invoices_filter_by_issue_date">Con fecha de emisión</string>
+    <string name="invoices_filter_issue_date_from">Desde:</string>
+    <string name="invoices_filter_issue_date_to">Hasta:</string>
+    <string name="invoices_filter_default_date">día/mes/año</string>
+    <string name="invoices_filter_by_amount">Por un importe</string>
+    <string name="invoices_filter_by_state">Por estado</string>
+    <string name="invoices_filter_paid">Pagadas</string>
+    <string name="invoices_filter_cancelled">Anuladas</string>
+    <string name="invoices_filter_fixed_fee">Cuota Fija</string>
+    <string name="invoices_filter_pending">Pendientes de pago</string>
+    <string name="invoices_filter_payment_plan">Plan de pago</string>
+    <string name="invoices_filter_apply_btn">Aplicar</string>
+    <string name="invoices_filter_remove_btn">Eliminar filtros</string>
+    <string name="invoices_filter_pick_date">Seleccione fecha</string>
+    <string name="invoices_filter_amount_range">%s</string>
+    <string name="invoices_filter_selected_amount_range">%s - %s</string>
+    <!-- SMART SOLAR -->
+    <string name="ss_installation_menu_label">Mi instalación</string>
+    <string name="ss_energy_menu_label">Energía</string>
+    <string name="ss_details_menu_label">Detalles</string>
+    <string name="ss_energy_temporal_message">Estamos trabajando en mejorar la App. Tus paneles solares siguen produciendo, en breve podrás seguir viendo tu producción solar. Sentimos las molestias.</string>
+    <string name="ss_details_cau_label">CAU (Código Autoconsumo)</string>
+    <string name="ss_details_request_status_label">Estado solicitud alta autoconsumidor</string>
+    <string name="ss_details_consumption_type">Tipo autoconsumo</string>
+    <string name="ss_details_surplus_compensation_label">Compensación de excedentes</string>
+    <string name="ss_details_power_label">Potencia de instalación</string>
+    <!-- NAVIGATION TO WEBPAGES -->
+    <string name="web_nav_explanation">Desde una aplicación Android, se puede acceder a páginas webs, mediante el navegador externo o mediante Webviews.</string>
+    <string name="web_nav_btn_open_externally">Abrir Navegador externo</string>
+    <string name="web_nav_button_open_webview">Abrir Webview</string>
 </resources>
