@@ -18,7 +18,7 @@ class AuthService(private val firebase: FirebaseService = FirebaseService.getIns
         private var _INSTANCE: AuthService? = null
 
         fun getInstance(): AuthService {
-            return _INSTANCE ?: AuthService()
+            return _INSTANCE ?: AuthService().also { authSvc -> _INSTANCE = authSvc }
         }
     }
 

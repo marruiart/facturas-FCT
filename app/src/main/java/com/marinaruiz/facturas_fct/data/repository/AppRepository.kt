@@ -42,7 +42,7 @@ class AppRepository private constructor(
                     InvoicesDatabase.getInstance().invoicesDao(),
                     InvoicesDatabase.getInstance().smartSolarDao()
                 )
-            )
+            ).also { appRepository -> _INSTANCE = appRepository }
         }
     }
 

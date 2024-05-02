@@ -70,7 +70,7 @@ class InvoicesApiService private constructor() {
                 val _retromock = getRetromockInstance()
                 retrofit = _retrofit.create(IInvoicesProdApi::class.java)
                 retromock = _retromock.create(IInvoicesMockApi::class.java)
-                InvoicesApiService()
+                InvoicesApiService().also { apiSvc -> _INSTANCE = apiSvc }
             } else {
                 requireNotNull(_INSTANCE)
             }

@@ -1,9 +1,9 @@
 package com.marinaruiz.facturas_fct.data.network
 
 import android.util.Log
+import com.marinaruiz.facturas_fct.core.utils.ENVIRONMENT
 import com.marinaruiz.facturas_fct.data.network.invoicesApi.InvoicesApiService
 import com.marinaruiz.facturas_fct.data.network.invoicesApi.models.InvoiceApiModel
-import com.marinaruiz.facturas_fct.core.utils.ENVIRONMENT
 import com.marinaruiz.facturas_fct.data.network.invoicesApi.models.SSDetailApiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,7 +25,10 @@ class NetworkRepository private constructor(
         private var _INSTANCE: NetworkRepository? = null
 
         fun getInstance(): NetworkRepository {
-            return _INSTANCE ?: NetworkRepository(InvoicesApiService.getInstance())
+            return _INSTANCE
+                ?: NetworkRepository(InvoicesApiService.getInstance()).also { networkRepository ->
+                    _INSTANCE = networkRepository
+                }
         }
     }
 

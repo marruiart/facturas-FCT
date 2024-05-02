@@ -23,7 +23,9 @@ class NetworkConnectionManager(
         private var _INSTANCE: NetworkConnectionManager? = null
 
         fun getInstance(coroutineScope: CoroutineScope): NetworkConnectionManager {
-            return _INSTANCE ?: NetworkConnectionManager(coroutineScope)
+            return _INSTANCE ?: NetworkConnectionManager(coroutineScope).also { connManager ->
+                _INSTANCE = connManager
+            }
         }
     }
 
@@ -32,13 +34,11 @@ class NetworkConnectionManager(
     private val _currentNetwork = MutableStateFlow(provideDefaultCurrentNetwork())
 
     val isNetworkConnectedFlow: StateFlow<Boolean> =
-        _currentNetwork
-            .map { it.isConnected() }
-            .stateIn(
-                scope = coroutineScope,
-                started = SharingStarted.WhileSubscribed(),
-                initialValue = _currentNetwork.value.isConnected()
-            )
+        _currentNetwork.map { it.isConnected() }.stateIn(
+            scope = coroutineScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = _currentNetwork.value.isConnected()
+        )
 
     val isNetworkConnected: Boolean
         get() = isNetworkConnectedFlow.value
@@ -50,8 +50,7 @@ class NetworkConnectionManager(
 
         // Reset state before start listening
         _currentNetwork.update {
-            provideDefaultCurrentNetwork()
-                .copy(isListening = true)
+            provideDefaultCurrentNetwork().copy(isListening = true)
         }
 
         connectivityManager.registerDefaultNetworkCallback(networkCallback)
@@ -80,8 +79,7 @@ class NetworkConnectionManager(
         override fun onLost(network: Network) {
             _currentNetwork.update {
                 it.copy(
-                    isAvailable = false,
-                    networkCapabilities = null
+                    isAvailable = false, networkCapabilities = null
                 )
             }
         }
@@ -89,15 +87,13 @@ class NetworkConnectionManager(
         override fun onUnavailable() {
             _currentNetwork.update {
                 it.copy(
-                    isAvailable = false,
-                    networkCapabilities = null
+                    isAvailable = false, networkCapabilities = null
                 )
             }
         }
 
         override fun onCapabilitiesChanged(
-            network: Network,
-            networkCapabilities: NetworkCapabilities
+            network: Network, networkCapabilities: NetworkCapabilities
         ) {
             _currentNetwork.update {
                 it.copy(networkCapabilities = networkCapabilities)
@@ -118,10 +114,7 @@ class NetworkConnectionManager(
      */
     private fun provideDefaultCurrentNetwork(): CurrentNetwork {
         return CurrentNetwork(
-            isListening = false,
-            networkCapabilities = null,
-            isAvailable = false,
-            isBlocked = false
+            isListening = false, networkCapabilities = null, isAvailable = false, isBlocked = false
         )
     }
 
@@ -135,20 +128,16 @@ class NetworkConnectionManager(
     private fun CurrentNetwork.isConnected(): Boolean {
         // Since we don't know the network state if NetworkCallback is not registered.
         // We assume that it's disconnected.
-        return isListening &&
-                isAvailable &&
-                !isBlocked &&
-                networkCapabilities.isNetworkCapabilitiesValid()
+        return isListening && isAvailable && !isBlocked && networkCapabilities.isNetworkCapabilitiesValid()
     }
 
     private fun NetworkCapabilities?.isNetworkCapabilitiesValid(): Boolean = when {
         this == null -> false
-        hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-                hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED) &&
-                (hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-                        hasTransport(NetworkCapabilities.TRANSPORT_VPN) ||
-                        hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-                        hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) -> true
+        hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) && hasCapability(
+            NetworkCapabilities.NET_CAPABILITY_VALIDATED
+        ) && (hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || hasTransport(NetworkCapabilities.TRANSPORT_VPN) || hasTransport(
+            NetworkCapabilities.TRANSPORT_CELLULAR
+        ) || hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) -> true
 
         else -> false
     }
