@@ -3,6 +3,7 @@ package com.marinaruiz.facturas_fct.data.network.firebase
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import com.marinaruiz.facturas_fct.data.network.firebase.model.LoginResult
@@ -72,6 +73,10 @@ class AuthService(private val firebase: FirebaseService = FirebaseService.getIns
             checkNotNull(result.user)
             LoginResult.Success
         }
+    }
+
+    fun resetPassword(email: String): Task<Void> {
+        return firebase.resetPassword(email)
     }
 
 }

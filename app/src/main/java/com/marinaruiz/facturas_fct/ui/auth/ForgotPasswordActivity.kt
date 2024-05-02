@@ -7,18 +7,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
 import com.marinaruiz.facturas_fct.R
+import com.marinaruiz.facturas_fct.core.extension.isValidEmail
 import com.marinaruiz.facturas_fct.databinding.ActivityForgotPasswordBinding
+import com.marinaruiz.facturas_fct.domain.ForgotPasswordUseCase
 
 class ForgotPasswordActivity : AppCompatActivity() {
     private lateinit var binding: ActivityForgotPasswordBinding
     private var padding: Int = 0
+    private val forgotPasswordUseCase = ForgotPasswordUseCase()
 
     companion object {
         private const val TAG = "VIEWNEXT ForgotPasswordActivity"
 
-        fun create(context: Context): Intent =
-            Intent(context, ForgotPasswordActivity::class.java)
+        fun create(context: Context): Intent = Intent(context, ForgotPasswordActivity::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,8 +55,20 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
     private fun initListeners() {
         with(binding) {
+            etForgotEmail.doOnTextChanged { email, _, _, _ ->
+                val valid = email.toString().isValidEmail()
+                btnForgotRemindPassword.isEnabled = valid
+                if (!email.isNullOrEmpty() && !valid) {
+                    etForgotEmail.backgroundTintList =
+                        getColorStateList(R.color.md_theme_light_error)
+                } else {
+                    etForgotEmail.backgroundTintList = getColorStateList(R.color.black)
+                }
+            }
+
             btnForgotRemindPassword.setOnClickListener {
-                // TODO firebase remind password
+                val email = binding.etForgotEmail.text.toString()
+                forgotPasswordUseCase(this@ForgotPasswordActivity, email)
             }
             btnForgotBackLogin.setOnClickListener { navigateLogin() }
         }
