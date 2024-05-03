@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainVM: MainViewModel by viewModels()
     private var padding: Int = 0
+    private var logout = true
     private val practices = arrayListOf(
         PracticeVO(1, "Práctica 1"),
         PracticeVO(2, "Práctica 2"),
@@ -74,8 +75,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initObservers() {
-        mainVM.uid.observe(this){ uid ->
-            if(uid == null) {
+        mainVM.uid.observe(this) { uid ->
+            if (uid == null && logout) {
+                logout = false
                 startActivity(LoginActivity.create(this))
                 this.finish()
             }
