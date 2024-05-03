@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "810396302376",
+    "project_id": "facturas-fct",
+    "storage_bucket": "facturas-fct.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810396302376:android:b359a6f2233ba2dc9dc91d",
+        "android_client_info": {
+          "package_name": "com.marinaruiz.facturas_fct"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCY1R8Cwp59suXat_cx_Nfa_Wzy0zo_-GM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
