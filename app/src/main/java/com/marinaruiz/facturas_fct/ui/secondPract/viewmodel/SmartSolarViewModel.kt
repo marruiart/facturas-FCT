@@ -42,7 +42,6 @@ class SmartSolarViewModel : ViewModel() {
     }
 
     private fun checkNetworkConnection() {
-        network.startListenNetworkState()
         viewModelScope.launch {
             network.isNetworkConnectedFlow.collect { isConnected ->
                 Log.d(TAG, "Network state: ${if (isConnected) "connected" else "disconnected"}")

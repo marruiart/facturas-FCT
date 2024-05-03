@@ -3,8 +3,9 @@ package com.marinaruiz.facturas_fct.core
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
+import android.util.Log
 import androidx.core.content.getSystemService
-import com.marinaruiz.facturas_fct.di.App.Companion.context
+import com.marinaruiz.facturas_fct.di.App
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -13,9 +14,22 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 
-class NetworkConnectionManager(
+interface NetworkConnectionManagerI {
+    /**
+     * Emits [Boolean] value when the current network becomes available or unavailable.
+     */
+    val isNetworkConnectedFlow: StateFlow<Boolean>
+
+    val isNetworkConnected: Boolean
+
+    fun startListenNetworkState()
+
+    fun stopListenNetworkState()
+}
+
+class NetworkConnectionManager private constructor(
     coroutineScope: CoroutineScope
-) {
+) : NetworkConnectionManagerI {
 
     companion object {
         private const val TAG = "VIEWNEXT NetworkConnectionManager"
@@ -23,27 +37,42 @@ class NetworkConnectionManager(
         private var _INSTANCE: NetworkConnectionManager? = null
 
         fun getInstance(coroutineScope: CoroutineScope): NetworkConnectionManager {
-            return _INSTANCE ?: NetworkConnectionManager(coroutineScope).also { connManager ->
-                _INSTANCE = connManager
-            }
+            return _INSTANCE?.restartIsNetworkConnectedFlow(coroutineScope)
+                ?: NetworkConnectionManager(coroutineScope).also {
+                    Log.d(TAG, "Creating NetworkConnectionManager")
+                    _INSTANCE = it
+                }
         }
     }
 
-    private val connectivityManager: ConnectivityManager = context.getSystemService()!!
+    private val connectivityManager: ConnectivityManager = App.context.getSystemService()!!
     private val networkCallback = NetworkCallback()
     private val _currentNetwork = MutableStateFlow(provideDefaultCurrentNetwork())
 
-    val isNetworkConnectedFlow: StateFlow<Boolean> =
+    override var isNetworkConnectedFlow: StateFlow<Boolean> =
         _currentNetwork.map { it.isConnected() }.stateIn(
             scope = coroutineScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = _currentNetwork.value.isConnected()
         )
 
-    val isNetworkConnected: Boolean
+    override val isNetworkConnected: Boolean
         get() = isNetworkConnectedFlow.value
 
-    fun startListenNetworkState() {
+    init {
+        startListenNetworkState()
+    }
+
+    private fun restartIsNetworkConnectedFlow(scope: CoroutineScope): NetworkConnectionManager {
+        isNetworkConnectedFlow = _currentNetwork.map { it.isConnected() }.stateIn(
+            scope = scope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = _currentNetwork.value.isConnected()
+        )
+        return this
+    }
+
+    override fun startListenNetworkState() {
         if (_currentNetwork.value.isListening) {
             return
         }
@@ -56,7 +85,7 @@ class NetworkConnectionManager(
         connectivityManager.registerDefaultNetworkCallback(networkCallback)
     }
 
-    fun stopListenNetworkState() {
+    override fun stopListenNetworkState() {
         if (!_currentNetwork.value.isListening) {
             return
         }
