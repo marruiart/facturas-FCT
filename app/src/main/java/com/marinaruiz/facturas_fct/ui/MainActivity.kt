@@ -24,11 +24,6 @@ class MainActivity : AppCompatActivity() {
     private val mainVM: MainViewModel by viewModels()
     private var padding: Int = 0
     private var logout = true
-    private val practices = arrayListOf(
-        PracticeVO(1, "Práctica 1"),
-        PracticeVO(2, "Práctica 2"),
-        PracticeVO(3, "Navegación")
-    )
 
     companion object {
         private const val TAG = "VIEWNEXT MainActivity"
@@ -82,21 +77,23 @@ class MainActivity : AppCompatActivity() {
                 this.finish()
             }
         }
+        mainVM.practices.observe(this) { practiceList ->
+            populatePracticeList(practiceList)
+        }
     }
 
     private fun initRecyclerView() {
         adapter = PracticeListAdapter(::onPracticeClick)
         setRecyclerViewAdapter()
-        populatePracticeList()
     }
 
     private fun setRecyclerViewAdapter() {
         binding.invoicesRv.adapter = adapter
     }
 
-    private fun populatePracticeList() {
-        Log.d(TAG, practices.toString())
-        adapter.submitList(practices)
+    private fun populatePracticeList(practiceList: ArrayList<PracticeVO>) {
+        Log.d(TAG, practiceList.toString())
+        adapter.submitList(practiceList)
     }
 
     private fun onPracticeClick(practice: PracticeVO) {

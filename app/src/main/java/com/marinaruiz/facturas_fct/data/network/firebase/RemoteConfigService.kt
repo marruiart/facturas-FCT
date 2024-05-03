@@ -8,23 +8,39 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.google.firebase.remoteconfig.remoteConfig
 import com.marinaruiz.facturas_fct.R
+import com.marinaruiz.facturas_fct.core.exceptions.ErrorOnSetDefaultAsyncException
+import com.marinaruiz.facturas_fct.core.exceptions.RemoteConfigException
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 class RemoteConfigService private constructor(
     private val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
 ) {
+    private val _showInvoicesList: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val showInvoicesList: StateFlow<Boolean>
+        get() = _showInvoicesList
 
     companion object {
         private const val TAG = "VIEWNEXT RemoteConfigService"
 
         private var _INSTANCE: RemoteConfigService? = null
 
+        @Throws(RemoteConfigException::class)
         fun getInstance(): RemoteConfigService {
             _INSTANCE?.let {
                 return it
             }
-            return RemoteConfigService().also {
-                it.remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
-                _INSTANCE = it
+            return RemoteConfigService().also { rcSvc ->
+                rcSvc.remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            rcSvc._showInvoicesList.value =
+                                rcSvc.remoteConfig.getBoolean("showInvoicesList")
+                            _INSTANCE = rcSvc
+                        } else {
+                            throw ErrorOnSetDefaultAsyncException()
+                        }
+                    }
             }
         }
     }
@@ -39,8 +55,14 @@ class RemoteConfigService private constructor(
                 Log.d(TAG, "Updated keys: " + configUpdate.updatedKeys);
 
                 if (configUpdate.updatedKeys.contains("showInvoicesList")) {
-                    remoteConfig.activate().addOnCompleteListener {
-                        Log.d(TAG, "remote config updated")
+                    remoteConfig.activate().addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            val newValue = remoteConfig.getBoolean("showInvoicesList")
+                            _showInvoicesList.value = newValue
+                            Log.d(TAG, "Remote config updated")
+                        } else {
+                            Log.w(TAG, "Error on config updating")
+                        }
                     }
                 }
             }

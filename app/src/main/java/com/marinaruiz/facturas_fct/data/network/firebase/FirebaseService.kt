@@ -3,9 +3,11 @@ package com.marinaruiz.facturas_fct.data.network.firebase
 import android.util.Log
 
 class FirebaseService private constructor(
-    val auth: AuthService = AuthService.getInstance(),
-    val remoteConfig: RemoteConfigService = RemoteConfigService.getInstance()
+    auth: AuthService = AuthService.getInstance(),
+    remoteConfig: RemoteConfigService = RemoteConfigService.getInstance()
 ) {
+
+    val showInvoicesList = remoteConfig.showInvoicesList
 
     companion object {
 

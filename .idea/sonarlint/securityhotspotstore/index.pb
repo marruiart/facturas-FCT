@@ -148,3 +148,5 @@ X
 Sapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/RemoteConfig.kt,d\d\ddff68589d0347a6fdcdb75076c6f5e29d7286fd
 Š
 Zapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/RemoteConfigService.kt,f\e\fe5180c13b786c3771c5380679ca54c5e656105d
+{
+Kapp/src/main/java/com/marinaruiz/facturas_fct/core/exceptions/exceptions.kt,0\2\02d9a3e3367afb4c62b662d243ac55cbf5bc3331

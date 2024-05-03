@@ -23,9 +23,9 @@ import java.time.ZonedDateTime
 class AuthViewModel : ViewModel() {
 
     private val loginUseCase = LoginUseCase()
+    private val logoutUseCase = LogoutUseCase()
     private val signUpUseCase = SignUpUseCase()
     private val togglePasswordVisibilityUseCase = TogglePasswordVisibilityUseCase()
-    private val logoutUseCase = LogoutUseCase()
 
     private val _allowAccess = MutableLiveData(false)
     val allowAccess: LiveData<Boolean> = _allowAccess
