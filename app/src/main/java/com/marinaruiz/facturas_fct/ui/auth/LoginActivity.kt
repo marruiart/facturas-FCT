@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -37,7 +38,10 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "VIEWNEXT LoginActivity"
 
-        fun create(context: Context): Intent = Intent(context, LoginActivity::class.java)
+        fun create(context: Context): Intent {
+            Log.d(TAG, "Creating LoginActivity")
+            return Intent(context, LoginActivity::class.java)
+        }
     }
 
     init {
@@ -70,8 +74,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        checkAccess()
         autocompleteEmail()
+        checkAccess()
         initListeners()
         initObservables()
     }
@@ -86,7 +90,7 @@ class LoginActivity : AppCompatActivity() {
                 )
             )
         }
-        if (isSessionExpired || rememberPass) {
+        if (isSessionExpired || !rememberPass) {
             authVM.logoutUseCase()
         }
     }
@@ -153,11 +157,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun observeAllowAccess() {
         authVM.allowAccess.observe(this) { allow ->
-            var rememberPass = isPasswordRemembered()
+            val rememberPass = isPasswordRemembered()
             if (allow && rememberPass || email.isNotEmpty() && password.isNotEmpty()) {
                 navigateMain()
-            } else if (allow && !rememberPass) {
-                authVM.logoutUseCase()
             }
         }
     }
