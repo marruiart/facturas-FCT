@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<defaults>
+    <entry>
+        <key>newTheme</key>
+        <value>false</value>>
+    </entry>
+    <entry>
+        <key>showInvoicesList</key>
+        <value>true</value>>
+    </entry>
+</defaults>

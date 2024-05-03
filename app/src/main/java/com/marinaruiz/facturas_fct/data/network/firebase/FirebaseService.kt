@@ -1,8 +1,11 @@
 package com.marinaruiz.facturas_fct.data.network.firebase
 
-import com.google.android.gms.tasks.Task
+import android.util.Log
 
-class FirebaseService(val client: FirebaseClient = FirebaseClient.getInstance()) {
+class FirebaseService private constructor(
+    val auth: AuthService = AuthService.getInstance(),
+    val remoteConfig: RemoteConfigService = RemoteConfigService.getInstance()
+) {
 
     companion object {
 
@@ -11,16 +14,11 @@ class FirebaseService(val client: FirebaseClient = FirebaseClient.getInstance())
         private var _INSTANCE: FirebaseService? = null
 
         fun getInstance(): FirebaseService {
-            return _INSTANCE ?: FirebaseService().also { firebaseSvc -> _INSTANCE = firebaseSvc }
+            return _INSTANCE ?: FirebaseService().also {
+                Log.d(TAG, "Creating FirebaseService")
+                _INSTANCE = it
+            }
         }
-    }
-
-    fun logout() {
-        client.auth.signOut()
-    }
-
-    fun resetPassword(email: String): Task<Void> {
-        return client.auth.sendPasswordResetEmail(email)
     }
 
 }

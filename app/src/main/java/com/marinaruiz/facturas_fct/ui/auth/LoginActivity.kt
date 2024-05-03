@@ -12,11 +12,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marinaruiz.facturas_fct.R
 import com.marinaruiz.facturas_fct.core.ErrorResponse
-import com.marinaruiz.facturas_fct.core.NetworkConnectionManager
 import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.removePasswordInSharedPrefs
 import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.retrieveFromSecSharedPrefs
 import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.saveInSecSharedPrefs
@@ -30,7 +28,6 @@ import java.time.ZonedDateTime
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val authVM: AuthViewModel by viewModels()
-    private val network = NetworkConnectionManager.getInstance(lifecycleScope)
     private var padding: Int = 0
     private var email: String = ""
     private var password: String = ""
@@ -42,10 +39,6 @@ class LoginActivity : AppCompatActivity() {
             Log.d(TAG, "Creating LoginActivity")
             return Intent(context, LoginActivity::class.java)
         }
-    }
-
-    init {
-        network.startListenNetworkState()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,15 +84,17 @@ class LoginActivity : AppCompatActivity() {
             )
         }
         if (isSessionExpired || !rememberPass) {
-            authVM.logoutUseCase()
+            authVM.logout()
         }
     }
 
     private fun autocompleteEmail() {
+        val saveCredentials = retrieveFromSecSharedPrefs("saveCredentials") == "true"
         val email = retrieveFromSecSharedPrefs("email")
-        if (email != null) {
+        email?.let {
             binding.etLoginUser.setText(email)
         }
+        binding.cbLoginRememberPassword.isChecked = saveCredentials
     }
 
     private fun initListeners() {
@@ -125,10 +120,10 @@ class LoginActivity : AppCompatActivity() {
                 val saveCredentials = cbLoginRememberPassword.isChecked
                 authVM.login(email, password)
                 saveInSecSharedPrefs(
-                    "loginTime",
-                    ZonedDateTime.now(ZoneOffset.UTC).toIsoDateFormat(locale = null)
+                    "loginTime", ZonedDateTime.now(ZoneOffset.UTC).toIsoDateFormat(locale = null)
                 )
                 saveInSecSharedPrefs("email", email)
+                saveInSecSharedPrefs("saveCredentials", saveCredentials.toString())
                 if (saveCredentials) {
                     saveInSecSharedPrefs("pass", password)
                 } else {

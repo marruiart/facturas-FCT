@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setWindowInsets() {
-        padding = resources.getDimension(com.marinaruiz.facturas_fct.R.dimen.dimen_size_16).toInt()
+        padding = resources.getDimension(R.dimen.dimen_size_16).toInt()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

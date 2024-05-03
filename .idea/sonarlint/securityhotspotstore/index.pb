@@ -144,3 +144,7 @@ Gapp/src/main/java/com/marinaruiz/facturas_fct/core/SecureSharedPrefs.kt,0\7\07
 Mapp/src/main/java/com/marinaruiz/facturas_fct/domain/ForgotPasswordUseCase.kt,b\5\b55a0e3c6e20cb6c4a30f6a4453591bd1e312de5
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+ƒ
+Sapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/RemoteConfig.kt,d\d\ddff68589d0347a6fdcdb75076c6f5e29d7286fd
+Š
+Zapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/RemoteConfigService.kt,f\e\fe5180c13b786c3771c5380679ca54c5e656105d
