@@ -68,4 +68,17 @@
     <color name="colorBackground">#FFFFFFFF</color>
     <color name="gris_oscuro">#333333</color>
     <color name="verde">#2DCF00</color>
+
+    <color name="md_theme_halloween_primary">#FF8002</color>
+    <color name="md_theme_halloween_onPrimary">#FFFFFF</color>
+    <color name="md_theme_halloween_primaryContainer">#FFDCC7</color>
+    <color name="md_theme_halloween_onPrimaryContainer">#311300</color>
+    <color name="md_theme_halloween_secondary">#755846</color>
+    <color name="md_theme_halloween_onSecondary">#FFFFFF</color>
+    <color name="md_theme_halloween_secondaryContainer">#FFDCC7</color>
+    <color name="md_theme_halloween_onSecondaryContainer">#2B1709</color>
+    <color name="md_theme_halloween_tertiary">#606134</color>
+    <color name="md_theme_halloween_onTertiary">#FFFFFF</color>
+    <color name="md_theme_halloween_tertiaryContainer">#E6E6AD</color>
+    <color name="md_theme_halloween_onTertiaryContainer">#1C1D00</color>
 </resources>

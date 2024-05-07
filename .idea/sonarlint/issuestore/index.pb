@@ -108,8 +108,6 @@ dapp/src/main/java/com/marinaruiz/facturas_fct/ui/firstPract/fragment/InvoicesFi
 Zapp/src/main/java/com/marinaruiz/facturas_fct/ui/firstPract/viewmodel/InvoicesViewModel.kt,8\3\83c4f8872b1f12efcb2391e4f780e97a1925e878
 ˆ
 Xapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/model/LoginResult.kt,1\2\12fb4ef8457edf918d20a692c32cdf11d507ac58
-…
-Uapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/FirebaseClient.kt,2\a\2a5db843a4b57c461ab4b51697431897f7546533
 ‚
 Rapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/AuthService.kt,3\3\33194c7382dc156b6bee6ba20a9f565ddd0c252e
 †
@@ -144,9 +142,11 @@ Gapp/src/main/java/com/marinaruiz/facturas_fct/core/SecureSharedPrefs.kt,0\7\07
 Mapp/src/main/java/com/marinaruiz/facturas_fct/domain/ForgotPasswordUseCase.kt,b\5\b55a0e3c6e20cb6c4a30f6a4453591bd1e312de5
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
-ƒ
-Sapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/RemoteConfig.kt,d\d\ddff68589d0347a6fdcdb75076c6f5e29d7286fd
 Š
 Zapp/src/main/java/com/marinaruiz/facturas_fct/data/network/firebase/RemoteConfigService.kt,f\e\fe5180c13b786c3771c5380679ca54c5e656105d
 {
 Kapp/src/main/java/com/marinaruiz/facturas_fct/core/exceptions/exceptions.kt,0\2\02d9a3e3367afb4c62b662d243ac55cbf5bc3331
+p
+@app/src/main/java/com/marinaruiz/facturas_fct/core/ColorUtils.kt,9\e\9ed5593c3f83c31367ccd455a2d324ae1525c000
+z
+Japp/src/main/java/com/marinaruiz/facturas_fct/core/DynamicThemeActivity.kt,8\e\8e2091709f3ef87bf38d1145cca9e359fb097a00

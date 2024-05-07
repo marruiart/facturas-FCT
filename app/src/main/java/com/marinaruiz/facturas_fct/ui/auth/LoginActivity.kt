@@ -5,28 +5,33 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View.GONE
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marinaruiz.facturas_fct.R
+import com.marinaruiz.facturas_fct.core.DynamicThemeActivity
 import com.marinaruiz.facturas_fct.core.ErrorResponse
 import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.removePasswordInSharedPrefs
 import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.retrieveFromSecSharedPrefs
 import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.saveInSecSharedPrefs
 import com.marinaruiz.facturas_fct.core.extension.isValidEmail
 import com.marinaruiz.facturas_fct.core.extension.toIsoDateFormat
+import com.marinaruiz.facturas_fct.data.network.firebase.RemoteConfigService
 import com.marinaruiz.facturas_fct.databinding.ActivityLoginBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
+import kotlinx.coroutines.launch
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : DynamicThemeActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private val remoteConfig = RemoteConfigService.getInstance()
     private val authVM: AuthViewModel by viewModels()
     private var padding: Int = 0
     private var email: String = ""
@@ -43,12 +48,25 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        setWindowInsets()
-        initUI()
+        lifecycleScope.launch {
+            remoteConfig.loading.collect { loading ->
+                if (loading != null && !loading) {
+                    val theme = remoteConfig.getStringValue()
+                    setCurrentTheme(theme)
+                    recreate()
+                }
+            }
+        }
+        if (remoteConfig.loading.value == null) {
+            setTheme()
+            binding = ActivityLoginBinding.inflate(layoutInflater)
+            binding.loadingLogin.visibility = GONE
+            enableEdgeToEdge()
+            val view = binding.root
+            setContentView(view)
+            setWindowInsets()
+            initUI()
+        }
     }
 
     private fun setWindowInsets() {

@@ -6,10 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.marinaruiz.facturas_fct.R
+import com.marinaruiz.facturas_fct.core.DynamicThemeActivity
+import com.marinaruiz.facturas_fct.data.network.firebase.RemoteConfigService
 import com.marinaruiz.facturas_fct.data.repository.model.PracticeVO
 import com.marinaruiz.facturas_fct.databinding.ActivityMainBinding
 import com.marinaruiz.facturas_fct.ui.adapter.PracticeListAdapter
@@ -18,7 +19,8 @@ import com.marinaruiz.facturas_fct.ui.firstPract.InvoicesListActivity
 import com.marinaruiz.facturas_fct.ui.navigationPract.WebPagesNavigationActivity
 import com.marinaruiz.facturas_fct.ui.secondPract.SmartSolarActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DynamicThemeActivity() {
+    private val remoteConfig = RemoteConfigService.getInstance()
     private lateinit var adapter: PracticeListAdapter
     private lateinit var binding: ActivityMainBinding
     private val mainVM: MainViewModel by viewModels()
@@ -34,6 +36,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val theme = remoteConfig.getStringValue()
+        setCurrentTheme(theme)
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
