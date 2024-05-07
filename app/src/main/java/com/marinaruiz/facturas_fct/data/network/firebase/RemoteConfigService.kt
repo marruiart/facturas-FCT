@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 class RemoteConfigService private constructor(
     private val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
 ) {
-    private val _showInvoicesList: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val _showInvoicesList: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val showInvoicesList: StateFlow<Boolean>
         get() = _showInvoicesList
 
@@ -45,6 +45,8 @@ class RemoteConfigService private constructor(
                 rcSvc.remoteConfig.setDefaultsAsync(R.xml.remote_config_defaults)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            rcSvc._showInvoicesList.value =
+                                rcSvc.remoteConfig.getBoolean("showInvoicesList")
                             rcSvc._loading.value = false
                             _INSTANCE = rcSvc
                         } else {
