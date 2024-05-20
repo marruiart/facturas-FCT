@@ -77,8 +77,21 @@
     <color name="md_theme_halloween_onSecondary">#FFFFFF</color>
     <color name="md_theme_halloween_secondaryContainer">#FFDCC7</color>
     <color name="md_theme_halloween_onSecondaryContainer">#2B1709</color>
-    <color name="md_theme_halloween_tertiary">#606134</color>
+    <color name="md_theme_halloween_tertiary">#614134</color>
     <color name="md_theme_halloween_onTertiary">#FFFFFF</color>
-    <color name="md_theme_halloween_tertiaryContainer">#E6E6AD</color>
+    <color name="md_theme_halloween_tertiaryContainer">#E6BFAD</color>
     <color name="md_theme_halloween_onTertiaryContainer">#1C1D00</color>
+
+    <color name="md_theme_christmas_primary">#FF0000</color>
+    <color name="md_theme_christmas_onPrimary">#FFFFFF</color>
+    <color name="md_theme_christmas_primaryContainer">#FFDCC7</color>
+    <color name="md_theme_christmas_onPrimaryContainer">#310000</color>
+    <color name="md_theme_christmas_secondary">#754646</color>
+    <color name="md_theme_christmas_onSecondary">#FFFFFF</color>
+    <color name="md_theme_christmas_secondaryContainer">#E1FFC7</color>
+    <color name="md_theme_christmas_onSecondaryContainer">#2B1709</color>
+    <color name="md_theme_christmas_tertiary">#346136</color>
+    <color name="md_theme_christmas_onTertiary">#FFFFFF</color>
+    <color name="md_theme_christmas_tertiaryContainer">#E6ADAD</color>
+    <color name="md_theme_christmas_onTertiaryContainer">#1C1D00</color>
 </resources>

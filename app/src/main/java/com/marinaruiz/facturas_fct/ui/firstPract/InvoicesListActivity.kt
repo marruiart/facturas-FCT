@@ -8,11 +8,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.marinaruiz.facturas_fct.R
+import com.marinaruiz.facturas_fct.core.DynamicThemeActivity
 import com.marinaruiz.facturas_fct.core.utils.AppEnvironment
+import com.marinaruiz.facturas_fct.data.network.firebase.RemoteConfigService
 import com.marinaruiz.facturas_fct.data.repository.model.Filter
 import com.marinaruiz.facturas_fct.data.repository.model.InvoiceVO
 import com.marinaruiz.facturas_fct.databinding.ActivityInvoicesListBinding
@@ -21,10 +24,9 @@ import com.marinaruiz.facturas_fct.ui.adapter.InvoicesListAdapter
 import com.marinaruiz.facturas_fct.ui.firstPract.fragment.InvoicesFilterDialogFragment
 import com.marinaruiz.facturas_fct.ui.firstPract.fragment.InvoicesFilterDialogFragmentListener
 import com.marinaruiz.facturas_fct.ui.firstPract.viewmodel.InvoicesViewModel
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentListener {
+class InvoicesListActivity : DynamicThemeActivity(), InvoicesFilterDialogFragmentListener {
+    private val remoteConfig = RemoteConfigService.getInstance()
     private lateinit var adapter: InvoicesListAdapter
     private lateinit var toolbar: MaterialToolbar
     private lateinit var binding: ActivityInvoicesListBinding
@@ -39,6 +41,8 @@ class InvoicesListActivity : AppCompatActivity(), InvoicesFilterDialogFragmentLi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val theme = remoteConfig.getStringValue()
+        setCurrentTheme(theme)
         enableEdgeToEdge()
         binding = ActivityInvoicesListBinding.inflate(layoutInflater)
         val view = binding.root

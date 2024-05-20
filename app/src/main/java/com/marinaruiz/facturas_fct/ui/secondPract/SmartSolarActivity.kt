@@ -4,33 +4,38 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.tabs.TabLayout
 import com.marinaruiz.facturas_fct.R
+import com.marinaruiz.facturas_fct.core.DynamicThemeActivity
+import com.marinaruiz.facturas_fct.data.network.firebase.RemoteConfigService
 import com.marinaruiz.facturas_fct.databinding.ActivitySmartSolarBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
 import com.marinaruiz.facturas_fct.ui.secondPract.fragment.SSDetailsFragment
 import com.marinaruiz.facturas_fct.ui.secondPract.fragment.SSEnergyFragment
 import com.marinaruiz.facturas_fct.ui.secondPract.fragment.SSInstallationFragment
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.tabs.TabLayout
 
-class SmartSolarActivity() : AppCompatActivity() {
+class SmartSolarActivity() : DynamicThemeActivity() {
+    private val remoteConfig = RemoteConfigService.getInstance()
     private lateinit var binding: ActivitySmartSolarBinding
     private lateinit var toolbar: MaterialToolbar
     private var padding: Int = 0
 
     companion object {
-        private const val TAG = "VIEWNEXT SmartSolarActivity"
+        const val TAG = "VIEWNEXT SmartSolarActivity"
 
         fun create(context: Context): Intent = Intent(context, SmartSolarActivity::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val theme = remoteConfig.getStringValue()
+        setCurrentTheme(theme)
         enableEdgeToEdge()
         binding = ActivitySmartSolarBinding.inflate(layoutInflater)
         val view = binding.root
@@ -64,6 +69,11 @@ class SmartSolarActivity() : AppCompatActivity() {
     private fun initUI() {
         loadFragment(SSInstallationFragment())
         initListeners()
+        val image = getThemeImageDrawable(TAG)
+        if (image != null) {
+            binding.ivThemeImageSs.setImageResource(image)
+            binding.ivThemeImageSs.visibility = View.VISIBLE
+        }
     }
 
     private fun initListeners() {

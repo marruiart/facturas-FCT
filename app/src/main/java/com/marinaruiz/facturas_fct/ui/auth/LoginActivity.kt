@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.CheckBox
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -38,7 +39,7 @@ class LoginActivity : DynamicThemeActivity() {
     private var password: String = ""
 
     companion object {
-        private const val TAG = "VIEWNEXT LoginActivity"
+        const val TAG = "VIEWNEXT LoginActivity"
 
         fun create(context: Context): Intent {
             Log.d(TAG, "Creating LoginActivity")
@@ -46,26 +47,68 @@ class LoginActivity : DynamicThemeActivity() {
         }
     }
 
+    private fun initView() {
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        val theme = remoteConfig.getStringValue()
+        setCurrentTheme(theme)
+        enableEdgeToEdge()
+        val view = binding.root
+        setContentView(view)
+        setWindowInsets()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        lifecycleScope.launch {
-            remoteConfig.loading.collect { loading ->
-                if (loading != null && !loading) {
-                    val theme = remoteConfig.getStringValue()
-                    setCurrentTheme(theme)
-                    recreate()
+        initView()
+        authVM.initRemoteConfig.observe(this) { withInternet ->
+            if (withInternet != null && withInternet) {
+                lifecycleScope.launch {
+                    remoteConfig.loading.collect { loading ->
+                        if (loading != null && !loading) {
+                            remoteConfig.fetchAndActivate().addOnCompleteListener {
+                                val theme = remoteConfig.getStringValue()
+                                setCurrentTheme(theme)
+                                recreate()
+                            }
+                        }
+                    }
                 }
+                if (remoteConfig.loading.value == null) {
+                    setTheme()
+                    initView()
+                    setVisibility()
+                    initUI()
+                }
+            } else if (withInternet != null) {
+                setVisibility()
+                setWindowInsets()
+                initUI()
             }
         }
-        if (remoteConfig.loading.value == null) {
-            setTheme()
-            binding = ActivityLoginBinding.inflate(layoutInflater)
-            binding.loadingLogin.visibility = GONE
-            enableEdgeToEdge()
-            val view = binding.root
-            setContentView(view)
-            setWindowInsets()
-            initUI()
+    }
+
+    private fun setVisibility() {
+        with(binding) {
+            loadingLogin.visibility = GONE
+            ivLoadingLoginIberdrola.visibility = GONE
+            ivLoginIberdrola.visibility = VISIBLE
+            spaceLoginTop.visibility = VISIBLE
+            etLoginUser.visibility = VISIBLE
+            etLoginPassword.visibility = VISIBLE
+            btnLoginEye.visibility = VISIBLE
+            cbLoginRememberPassword.visibility = VISIBLE
+            btnLoginForgotPassword.visibility = VISIBLE
+            spaceLoginBottom.visibility = VISIBLE
+            btnLoginAccept.visibility = VISIBLE
+            dividerLoginLeft.visibility = VISIBLE
+            tvLoginOtherOptionLabel.visibility = VISIBLE
+            dividerLoginRight.visibility = VISIBLE
+            btnLoginSignup.visibility = VISIBLE
+            val image = getThemeImageDrawable(TAG)
+            if (image != null) {
+                ivThemeImageLogin.setImageResource(image)
+                ivThemeImageLogin.visibility = VISIBLE
+            }
         }
     }
 

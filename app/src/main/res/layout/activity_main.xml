@@ -40,4 +40,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/iv_theme_image_main"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/invoices_rv"
+        app:layout_constraintStart_toStartOf="@+id/invoices_rv"
+        app:srcCompat="@drawable/christmas_tree" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
@@ -28,7 +29,7 @@ class MainActivity : DynamicThemeActivity() {
     private var logout = true
 
     companion object {
-        private const val TAG = "VIEWNEXT MainActivity"
+        const val TAG = "VIEWNEXT MainActivity"
 
         fun create(context: Context): Intent =
             Intent(context, MainActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
@@ -62,6 +63,11 @@ class MainActivity : DynamicThemeActivity() {
     }
 
     private fun initUI() {
+        val image = getThemeImageDrawable(TAG)
+        if (image != null) {
+            binding.ivThemeImageMain.setImageResource(image)
+            binding.ivThemeImageMain.visibility = View.VISIBLE
+        }
         initRecyclerView()
         initListeners()
         initObservers()

@@ -8,16 +8,18 @@ import android.view.View
 import android.webkit.WebView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.appbar.MaterialToolbar
 import com.marinaruiz.facturas.utils.WEB_PAGE_URL
 import com.marinaruiz.facturas_fct.R
+import com.marinaruiz.facturas_fct.core.DynamicThemeActivity
+import com.marinaruiz.facturas_fct.data.network.firebase.RemoteConfigService
 import com.marinaruiz.facturas_fct.databinding.ActivityWebPagesNavigationBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
-import com.google.android.material.appbar.MaterialToolbar
 
-class WebPagesNavigationActivity : AppCompatActivity() {
+class WebPagesNavigationActivity : DynamicThemeActivity() {
+    private val remoteConfig = RemoteConfigService.getInstance()
     private lateinit var binding: ActivityWebPagesNavigationBinding
     private lateinit var toolbar: MaterialToolbar
     private var padding: Int = 0
@@ -32,6 +34,8 @@ class WebPagesNavigationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val theme = remoteConfig.getStringValue()
+        setCurrentTheme(theme)
         enableEdgeToEdge()
         binding = ActivityWebPagesNavigationBinding.inflate(layoutInflater)
         val view = binding.root

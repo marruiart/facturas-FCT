@@ -37,11 +37,15 @@ class NetworkConnectionManager private constructor(
         private var _INSTANCE: NetworkConnectionManager? = null
 
         fun getInstance(coroutineScope: CoroutineScope): NetworkConnectionManager {
-            return _INSTANCE?.restartIsNetworkConnectedFlow(coroutineScope)
-                ?: NetworkConnectionManager(coroutineScope).also {
-                    Log.d(TAG, "Creating NetworkConnectionManager")
-                    _INSTANCE = it
-                }
+            return if (_INSTANCE != null) {
+                Log.d(TAG, "Obtaining NetworkConnectionManager...")
+                _INSTANCE!!.restartIsNetworkConnectedFlow(coroutineScope)
+            } else {
+                Log.d(TAG, "Creating NetworkConnectionManager...")
+                val instance = NetworkConnectionManager(coroutineScope)
+                _INSTANCE = instance
+                _INSTANCE!!
+            }
         }
     }
 

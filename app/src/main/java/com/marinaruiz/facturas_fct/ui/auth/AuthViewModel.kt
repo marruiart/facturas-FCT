@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marinaruiz.facturas_fct.core.ErrorResponse
+import com.marinaruiz.facturas_fct.core.NetworkConnectionManager
 import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.retrieveFromSecSharedPrefs
 import com.marinaruiz.facturas_fct.core.extension.toZonedDateTime
 import com.marinaruiz.facturas_fct.data.network.firebase.model.LoginResult
@@ -21,7 +22,7 @@ import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
 class AuthViewModel : ViewModel() {
-
+    private val network = NetworkConnectionManager.getInstance(viewModelScope)
     private val loginUseCase = LoginUseCase()
     private val logoutUseCase = LogoutUseCase()
     private val signUpUseCase = SignUpUseCase()
@@ -29,6 +30,9 @@ class AuthViewModel : ViewModel() {
 
     private val _allowAccess = MutableLiveData(false)
     val allowAccess: LiveData<Boolean> = _allowAccess
+
+    private val _initRemoteConfig = MutableLiveData<Boolean?>(null)
+    val initRemoteConfig: LiveData<Boolean?> = _initRemoteConfig
 
     private val _showErrorDialog = MutableLiveData<ErrorResponse?>()
     val showErrorDialog: LiveData<ErrorResponse?> = _showErrorDialog
@@ -42,9 +46,18 @@ class AuthViewModel : ViewModel() {
     }
 
     init {
+        checkNetworkConnection()
         loginUseCase.uid.observeForever(observer)
     }
 
+    private fun checkNetworkConnection() {
+        viewModelScope.launch {
+            network.isNetworkConnectedFlow.collect { isConnected ->
+                Log.d(TAG, "Network state: ${if (isConnected) "connected" else "disconnected"}")
+                _initRemoteConfig.value = isConnected
+            }
+        }
+    }
 
     fun login(email: String, password: String) {
         viewModelScope.launch {

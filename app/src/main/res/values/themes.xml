@@ -46,5 +46,21 @@
         <item name="colorOnTertiaryContainer">@color/md_theme_halloween_onTertiaryContainer</item>
     </style>
 
+    <style name="Base.Theme.FacturasFCT.Christmas" parent="Base.Theme.FacturasFCT">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/md_theme_christmas_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_christmas_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_christmas_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_christmas_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/md_theme_christmas_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_christmas_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_christmas_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_christmas_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_christmas_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_christmas_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_christmas_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_christmas_onTertiaryContainer</item>
+    </style>
+
     <style name="Theme.FacturasFCT" parent="Base.Theme.FacturasFCT" />
 </resources>
