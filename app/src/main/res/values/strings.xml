@@ -64,4 +64,8 @@
     <string name="web_nav_explanation">Desde una aplicación Android, se puede acceder a páginas webs, mediante el navegador externo o mediante Webviews.</string>
     <string name="web_nav_btn_open_externally">Abrir Navegador externo</string>
     <string name="web_nav_button_open_webview">Abrir Webview</string>
+    <!-- DETAILS INFORMATION DIALOG -->
+    <string name="btn_dialog_info">Aceptar</string>
+    <string name="message_dialog_info">El tiempo estimado de activación de tu autoconsumo es de 1 a 2 meses, este variará en función de tu comunidad autónoma y distribuidora</string>
+    <string name="title_dialog_info">Estado solicitud autoconsumo</string>
 </resources>

@@ -150,3 +150,5 @@ p
 @app/src/main/java/com/marinaruiz/facturas_fct/core/ColorUtils.kt,9\e\9ed5593c3f83c31367ccd455a2d324ae1525c000
 z
 Japp/src/main/java/com/marinaruiz/facturas_fct/core/DynamicThemeActivity.kt,8\e\8e2091709f3ef87bf38d1145cca9e359fb097a00
+‹
+[app/src/main/java/com/marinaruiz/facturas_fct/ui/secondPract/fragment/InfoDialogFragment.kt,b\f\bfa5af652621e3e2a7ffff58de40e7cd6772adad

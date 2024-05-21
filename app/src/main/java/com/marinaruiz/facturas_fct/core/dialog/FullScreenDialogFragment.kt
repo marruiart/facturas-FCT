@@ -1,4 +1,4 @@
-package com.marina.ruiz.globetrotting.core.dialog
+package com.marinaruiz.facturas_fct.core.dialog
 
 import android.app.Dialog
 import android.os.Bundle

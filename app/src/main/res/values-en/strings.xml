@@ -63,4 +63,8 @@
     <string name="web_nav_explanation">From an Android application, web pages can be accessed either through the external browser or through WebViews.</string>
     <string name="web_nav_btn_open_externally">Open external Browser</string>
     <string name="web_nav_button_open_webview">Open Webview</string>
+    <!-- DETAILS INFORMATION DIALOG -->
+    <string name="btn_dialog_info">Accept</string>
+    <string name="message_dialog_info">The estimated activation time for your self-consumption system is 1 to 2 months; this will vary depending on your autonomous community and distributor</string>
+    <string name="title_dialog_info">Self-consumption status</string>
 </resources>

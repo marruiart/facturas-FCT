@@ -19,21 +19,26 @@ class SSDetailsFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSsDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initListeners()
         smartSolarVM.details.observe(viewLifecycleOwner) { details ->
             details?.let {
                 bindView(it)
             }
+        }
+    }
+
+    private fun initListeners() {
+        binding.btnSsDetailInfoDialog.setOnClickListener {
+            InfoDialogFragment().show(parentFragmentManager, InfoDialogFragment.TAG)
         }
     }
 
@@ -44,4 +49,5 @@ class SSDetailsFragment : Fragment() {
         binding.etSsDetailSurplusCompensation.setText(details.surplusCompensation)
         binding.etSsDetailInstallationPower.setText(details.installationPower)
     }
+
 }
