@@ -12,11 +12,13 @@ import com.marinaruiz.facturas_fct.R
 import com.marinaruiz.facturas_fct.core.extension.isValidEmail
 import com.marinaruiz.facturas_fct.databinding.ActivityForgotPasswordBinding
 import com.marinaruiz.facturas_fct.domain.ForgotPasswordUseCase
+import javax.inject.Inject
 
-class ForgotPasswordActivity : AppCompatActivity() {
+class ForgotPasswordActivity @Inject constructor(
+    private val forgotPasswordUseCase: ForgotPasswordUseCase
+) : AppCompatActivity() {
     private lateinit var binding: ActivityForgotPasswordBinding
     private var padding: Int = 0
-    private val forgotPasswordUseCase = ForgotPasswordUseCase()
 
     companion object {
         private const val TAG = "VIEWNEXT ForgotPasswordActivity"

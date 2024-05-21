@@ -9,22 +9,17 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.marinaruiz.facturas_fct.data.network.firebase.model.LoginResult
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AuthService private constructor(
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
-) {
+@Singleton
+class AuthService @Inject constructor() {
 
     companion object {
-
         private const val TAG = "VIEWNEXT AuthService"
-
-        private var _INSTANCE: AuthService? = null
-
-        fun getInstance(): AuthService {
-            return _INSTANCE ?: AuthService().also { authSvc -> _INSTANCE = authSvc }
-        }
     }
 
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
     private val _uid = MutableLiveData<String?>()
     val uid: LiveData<String?>
         get() = _uid

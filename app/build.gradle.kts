@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("org.jetbrains.kotlin.kapt")
+    id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
 }
 
@@ -69,4 +70,7 @@ dependencies {
     implementation(libs.firebase.config)
     // SECURED SHARED PREFERENCES
     implementation(libs.androidx.security.crypto)
+    // HILT
+    kapt(libs.hilt.compiler)
+    implementation(libs.hilt.android)
 }

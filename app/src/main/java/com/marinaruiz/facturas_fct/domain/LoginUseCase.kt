@@ -2,8 +2,13 @@ package com.marinaruiz.facturas_fct.domain
 
 import com.marinaruiz.facturas_fct.data.network.firebase.AuthService
 import com.marinaruiz.facturas_fct.data.network.firebase.model.LoginResult
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LoginUseCase(private val authSvc: AuthService = AuthService.getInstance()) {
+@Singleton
+class LoginUseCase @Inject constructor(
+    private val authSvc: AuthService
+) {
 
     val uid = authSvc.uid
 

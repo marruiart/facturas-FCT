@@ -14,10 +14,12 @@ import com.marinaruiz.facturas_fct.core.exceptions.ErrorOnSetDefaultAsyncExcepti
 import com.marinaruiz.facturas_fct.core.exceptions.RemoteConfigException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteConfigService private constructor(
+@Singleton
+class RemoteConfigService @Inject constructor() {
     private val remoteConfig: FirebaseRemoteConfig = Firebase.remoteConfig
-) {
     private val _showInvoicesList: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val showInvoicesList: StateFlow<Boolean>
         get() = _showInvoicesList

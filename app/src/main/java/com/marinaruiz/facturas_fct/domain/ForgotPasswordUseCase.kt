@@ -2,13 +2,13 @@ package com.marinaruiz.facturas_fct.domain
 
 import android.content.Context
 import android.widget.Toast
-import com.marinaruiz.facturas_fct.core.SecureSharedPrefs.removePasswordInSharedPrefs
 import com.marinaruiz.facturas_fct.data.network.firebase.AuthService
-import com.marinaruiz.facturas_fct.di.App
+import javax.inject.Inject
+import javax.inject.Singleton
 
-
-class ForgotPasswordUseCase(
-    private val authSvc: AuthService = AuthService.getInstance()
+@Singleton
+class ForgotPasswordUseCase @Inject constructor(
+    private val authSvc: AuthService
 ) {
     operator fun invoke(context: Context, email: String) = run {
         authSvc.resetPassword(email).addOnCompleteListener { task ->

@@ -19,9 +19,12 @@ import com.marinaruiz.facturas_fct.ui.auth.LoginActivity
 import com.marinaruiz.facturas_fct.ui.firstPract.InvoicesListActivity
 import com.marinaruiz.facturas_fct.ui.navigationPract.WebPagesNavigationActivity
 import com.marinaruiz.facturas_fct.ui.secondPract.SmartSolarActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : DynamicThemeActivity() {
-    private val remoteConfig = RemoteConfigService.getInstance()
+
+    private val remoteConfig: RemoteConfigService = RemoteConfigService()
     private lateinit var adapter: PracticeListAdapter
     private lateinit var binding: ActivityMainBinding
     private val mainVM: MainViewModel by viewModels()

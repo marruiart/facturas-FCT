@@ -17,15 +17,19 @@ import com.marinaruiz.facturas_fct.domain.LoginUseCase
 import com.marinaruiz.facturas_fct.domain.LogoutUseCase
 import com.marinaruiz.facturas_fct.domain.SignUpUseCase
 import com.marinaruiz.facturas_fct.domain.TogglePasswordVisibilityUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
+import javax.inject.Inject
 
-class AuthViewModel : ViewModel() {
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase,
+    private val logoutUseCase: LogoutUseCase,
+    private val signUpUseCase: SignUpUseCase,
+) : ViewModel() {
     private val network = NetworkConnectionManager.getInstance(viewModelScope)
-    private val loginUseCase = LoginUseCase()
-    private val logoutUseCase = LogoutUseCase()
-    private val signUpUseCase = SignUpUseCase()
     private val togglePasswordVisibilityUseCase = TogglePasswordVisibilityUseCase()
 
     private val _allowAccess = MutableLiveData(false)

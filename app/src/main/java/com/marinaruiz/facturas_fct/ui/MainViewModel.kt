@@ -6,14 +6,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.marinaruiz.facturas_fct.core.NetworkConnectionManager
-import com.marinaruiz.facturas_fct.core.exceptions.RemoteConfigException
 import com.marinaruiz.facturas_fct.data.network.firebase.FirebaseService
 import com.marinaruiz.facturas_fct.data.repository.model.PracticeVO
 import com.marinaruiz.facturas_fct.domain.LoginUseCase
 import com.marinaruiz.facturas_fct.domain.LogoutUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel : ViewModel() {
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val firebase: FirebaseService,
+    private val logoutUseCase: LogoutUseCase,
+    private val loginUseCase: LoginUseCase
+) : ViewModel() {
     private val network = NetworkConnectionManager.getInstance(viewModelScope)
 
     private val _practicesWithInvoicesList = arrayListOf(
@@ -22,17 +28,7 @@ class MainViewModel : ViewModel() {
     private val _practicesWithoutInvoicesList = arrayListOf(
         PracticeVO(2, "Práctica 2"), PracticeVO(3, "Navegación")
     )
-    private val logoutUseCase = LogoutUseCase()
-    private val firebase: FirebaseService?
-        get() {
-            return try {
-                FirebaseService.getInstance()
-            } catch (ex: RemoteConfigException) {
-                Log.e(TAG, ex.message ?: "")
-                null
-            }
-        }
-    val uid = LoginUseCase().uid
+    val uid = loginUseCase.uid
     private val _practices = MutableLiveData(_practicesWithInvoicesList)
     val practices: LiveData<ArrayList<PracticeVO>>
         get() = _practices

@@ -26,10 +26,12 @@ import com.marinaruiz.facturas_fct.core.extension.toIsoDateFormat
 import com.marinaruiz.facturas_fct.data.network.firebase.RemoteConfigService
 import com.marinaruiz.facturas_fct.databinding.ActivityLoginBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 
+@AndroidEntryPoint
 class LoginActivity : DynamicThemeActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val remoteConfig = RemoteConfigService.getInstance()

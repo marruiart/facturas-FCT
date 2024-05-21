@@ -1,26 +1,17 @@
 package com.marinaruiz.facturas_fct.data.network.firebase
 
-import android.util.Log
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class FirebaseService private constructor(
-    auth: AuthService = AuthService.getInstance(),
-    remoteConfig: RemoteConfigService = RemoteConfigService.getInstance()
+@Singleton
+class FirebaseService @Inject constructor(
+    remoteConfig: RemoteConfigService
 ) {
 
     val showInvoicesList = remoteConfig.showInvoicesList
 
     companion object {
-
         private const val TAG = "VIEWNEXT FirebaseService"
-
-        private var _INSTANCE: FirebaseService? = null
-
-        fun getInstance(): FirebaseService {
-            return _INSTANCE ?: FirebaseService().also {
-                Log.d(TAG, "Creating FirebaseService")
-                _INSTANCE = it
-            }
-        }
     }
 
 }

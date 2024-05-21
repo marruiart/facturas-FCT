@@ -3,8 +3,13 @@ package com.marinaruiz.facturas_fct.domain
 import com.marinaruiz.facturas_fct.core.ErrorResponse
 import com.marinaruiz.facturas_fct.data.network.firebase.AuthService
 import com.marinaruiz.facturas_fct.data.network.firebase.model.SignUpResult
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class SignUpUseCase(private val authSvc: AuthService = AuthService.getInstance()) {
+@Singleton
+class SignUpUseCase @Inject constructor(
+    private val authSvc: AuthService
+) {
 
     suspend operator fun invoke(email: String, password: String): SignUpResult {
         return try {
