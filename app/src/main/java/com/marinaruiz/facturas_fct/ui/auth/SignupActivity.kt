@@ -21,7 +21,9 @@ import com.marinaruiz.facturas_fct.core.extension.isValidPassword
 import com.marinaruiz.facturas_fct.core.extension.validateEmailAndPassword
 import com.marinaruiz.facturas_fct.databinding.ActivitySignupBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignupActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignupBinding
     private val authVM: AuthViewModel by viewModels()

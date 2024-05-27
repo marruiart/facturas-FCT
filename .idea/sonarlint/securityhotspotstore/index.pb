@@ -152,3 +152,5 @@ z
 Japp/src/main/java/com/marinaruiz/facturas_fct/core/DynamicThemeActivity.kt,8\e\8e2091709f3ef87bf38d1145cca9e359fb097a00
 ‹
 [app/src/main/java/com/marinaruiz/facturas_fct/ui/secondPract/fragment/InfoDialogFragment.kt,b\f\bfa5af652621e3e2a7ffff58de40e7cd6772adad
+r
+Bapp/src/main/java/com/marinaruiz/facturas_fct/di/DatabaseModule.kt,3\8\38ad5ab92df89206bcccb72ad75899fc7db5bc40

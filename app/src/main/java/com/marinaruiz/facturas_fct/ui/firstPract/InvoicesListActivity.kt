@@ -24,7 +24,9 @@ import com.marinaruiz.facturas_fct.ui.adapter.InvoicesListAdapter
 import com.marinaruiz.facturas_fct.ui.firstPract.fragment.InvoicesFilterDialogFragment
 import com.marinaruiz.facturas_fct.ui.firstPract.fragment.InvoicesFilterDialogFragmentListener
 import com.marinaruiz.facturas_fct.ui.firstPract.viewmodel.InvoicesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InvoicesListActivity : DynamicThemeActivity(), InvoicesFilterDialogFragmentListener {
     private val remoteConfig = RemoteConfigService.getInstance()
     private lateinit var adapter: InvoicesListAdapter

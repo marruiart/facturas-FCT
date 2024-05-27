@@ -7,8 +7,11 @@ import com.marinaruiz.facturas_fct.data.network.invoicesApi.models.InvoiceApiMod
 import com.marinaruiz.facturas_fct.data.network.invoicesApi.models.SSDetailApiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class NetworkRepository private constructor(
+@Singleton
+class NetworkRepository @Inject constructor(
     private val service: InvoicesApiService
 ) {
     private val _invoices: MutableStateFlow<List<InvoiceApiModel>?> = MutableStateFlow(null)
@@ -21,15 +24,6 @@ class NetworkRepository private constructor(
 
     companion object {
         private const val TAG = "VIEWNEXT NetworkRepository"
-
-        private var _INSTANCE: NetworkRepository? = null
-
-        fun getInstance(): NetworkRepository {
-            return _INSTANCE
-                ?: NetworkRepository(InvoicesApiService.getInstance()).also { networkRepository ->
-                    _INSTANCE = networkRepository
-                }
-        }
     }
 
     suspend fun fetchInvoices(environment: String = ENVIRONMENT) {

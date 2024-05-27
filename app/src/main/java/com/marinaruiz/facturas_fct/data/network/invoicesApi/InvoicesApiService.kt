@@ -8,14 +8,16 @@ import co.infinum.retromock.meta.MockBehavior
 import co.infinum.retromock.meta.MockCircular
 import co.infinum.retromock.meta.MockResponse
 import co.infinum.retromock.meta.MockResponses
-import com.marinaruiz.facturas_fct.data.network.invoicesApi.models.InvoicesListResponse
 import com.marinaruiz.facturas_fct.core.utils.AppEnvironment
 import com.marinaruiz.facturas_fct.core.utils.BASE_URL
+import com.marinaruiz.facturas_fct.data.network.invoicesApi.models.InvoicesListResponse
 import com.marinaruiz.facturas_fct.data.network.invoicesApi.models.SSDetailResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import javax.inject.Inject
+import javax.inject.Singleton
 
 interface IInvoicesApi {
     suspend fun getAllInvoices(): Response<InvoicesListResponse>
@@ -53,28 +55,21 @@ interface IInvoicesMockApi : IInvoicesApi {
 /**
  * This class is responsible for interacting with REST HTTP URL
  */
-class InvoicesApiService private constructor() {
+@Singleton
+class InvoicesApiService @Inject constructor() {
 
     companion object {
         private const val TAG = "VIEWNEXT InvoicesApiService"
 
         private var _INSTANCE: InvoicesApiService? = null
-        lateinit var retrofit: IInvoicesProdApi
-        lateinit var retromock: IInvoicesMockApi
 
-        fun getInstance(): InvoicesApiService {
-            return if (_INSTANCE == null) {
-                // Instantiate retrofit
-                val _retrofit = getRetrofitInstance()
-                // Instantiate retromock
-                val _retromock = getRetromockInstance()
-                retrofit = _retrofit.create(IInvoicesProdApi::class.java)
-                retromock = _retromock.create(IInvoicesMockApi::class.java)
-                InvoicesApiService().also { apiSvc -> _INSTANCE = apiSvc }
-            } else {
-                requireNotNull(_INSTANCE)
-            }
-        }
+        // Instantiate retrofit
+        val _retrofit = getRetrofitInstance()
+
+        // Instantiate retromock
+        val _retromock = getRetromockInstance()
+        val retrofit: IInvoicesProdApi = _retrofit.create(IInvoicesProdApi::class.java)
+        val retromock: IInvoicesMockApi = _retromock.create(IInvoicesMockApi::class.java)
 
         private fun getRetrofitInstance(): Retrofit =
             Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create())

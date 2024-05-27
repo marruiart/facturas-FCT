@@ -9,7 +9,9 @@ import androidx.fragment.app.activityViewModels
 import com.marinaruiz.facturas_fct.data.repository.model.SmartSolarDetailVO
 import com.marinaruiz.facturas_fct.databinding.FragmentSsDetailsBinding
 import com.marinaruiz.facturas_fct.ui.secondPract.viewmodel.SmartSolarViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SSDetailsFragment : Fragment() {
     private val smartSolarVM: SmartSolarViewModel by activityViewModels()
     private lateinit var binding: FragmentSsDetailsBinding

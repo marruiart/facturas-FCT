@@ -4,8 +4,11 @@ import androidx.annotation.WorkerThread
 import com.marinaruiz.facturas_fct.data.local.models.InvoiceEntity
 import com.marinaruiz.facturas_fct.data.local.models.SSDetailsEntity
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class LocalDbRepository(
+@Singleton
+class LocalDbRepository @Inject constructor(
     private val invoiceDao: InvoiceDao,
     private val smartSolarDao: SmartSolarDao
 ) {

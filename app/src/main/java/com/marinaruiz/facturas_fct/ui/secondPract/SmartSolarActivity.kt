@@ -19,8 +19,10 @@ import com.marinaruiz.facturas_fct.ui.MainActivity
 import com.marinaruiz.facturas_fct.ui.secondPract.fragment.SSDetailsFragment
 import com.marinaruiz.facturas_fct.ui.secondPract.fragment.SSEnergyFragment
 import com.marinaruiz.facturas_fct.ui.secondPract.fragment.SSInstallationFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-class SmartSolarActivity() : DynamicThemeActivity() {
+@AndroidEntryPoint
+class SmartSolarActivity : DynamicThemeActivity() {
     private val remoteConfig = RemoteConfigService.getInstance()
     private lateinit var binding: ActivitySmartSolarBinding
     private lateinit var toolbar: MaterialToolbar

@@ -1,7 +1,6 @@
 package com.marinaruiz.facturas_fct.data.repository
 
 import com.marinaruiz.facturas_fct.core.utils.ENVIRONMENT
-import com.marinaruiz.facturas_fct.data.local.InvoicesDatabase
 import com.marinaruiz.facturas_fct.data.local.LocalDbRepository
 import com.marinaruiz.facturas_fct.data.local.models.InvoiceEntity
 import com.marinaruiz.facturas_fct.data.local.models.SSDetailsEntity
@@ -14,8 +13,11 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AppRepository private constructor(
+@Singleton
+class AppRepository @Inject constructor(
     private val networkRepository: NetworkRepository,
     private val localDbRepository: LocalDbRepository
 ) {
@@ -31,20 +33,6 @@ class AppRepository private constructor(
         get() {
             return localDbRepository.getSmartSolarDetails.map { it?.asSmartSolarDetailVO() }
         }
-
-    companion object {
-        private var _INSTANCE: AppRepository? = null
-
-        fun getInstance(): AppRepository {
-            return _INSTANCE ?: AppRepository(
-                NetworkRepository.getInstance(),
-                LocalDbRepository(
-                    InvoicesDatabase.getInstance().invoicesDao(),
-                    InvoicesDatabase.getInstance().smartSolarDao()
-                )
-            ).also { appRepository -> _INSTANCE = appRepository }
-        }
-    }
 
     fun setEnvironment(environment: String) {
         _environment = environment

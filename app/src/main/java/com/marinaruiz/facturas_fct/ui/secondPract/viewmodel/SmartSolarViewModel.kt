@@ -8,10 +8,14 @@ import androidx.lifecycle.viewModelScope
 import com.marinaruiz.facturas_fct.core.NetworkConnectionManager
 import com.marinaruiz.facturas_fct.data.repository.AppRepository
 import com.marinaruiz.facturas_fct.data.repository.model.SmartSolarDetailVO
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SmartSolarViewModel : ViewModel() {
-    private val repository: AppRepository = AppRepository.getInstance()
+@HiltViewModel
+class SmartSolarViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
     private val network = NetworkConnectionManager.getInstance(viewModelScope)
 
     private var _details = MutableLiveData<SmartSolarDetailVO>(null)

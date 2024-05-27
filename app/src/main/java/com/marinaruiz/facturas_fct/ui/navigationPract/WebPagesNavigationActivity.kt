@@ -17,7 +17,9 @@ import com.marinaruiz.facturas_fct.core.DynamicThemeActivity
 import com.marinaruiz.facturas_fct.data.network.firebase.RemoteConfigService
 import com.marinaruiz.facturas_fct.databinding.ActivityWebPagesNavigationBinding
 import com.marinaruiz.facturas_fct.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class WebPagesNavigationActivity : DynamicThemeActivity() {
     private val remoteConfig = RemoteConfigService.getInstance()
     private lateinit var binding: ActivityWebPagesNavigationBinding

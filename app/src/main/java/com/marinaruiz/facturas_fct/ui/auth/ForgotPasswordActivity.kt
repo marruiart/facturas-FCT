@@ -12,11 +12,13 @@ import com.marinaruiz.facturas_fct.R
 import com.marinaruiz.facturas_fct.core.extension.isValidEmail
 import com.marinaruiz.facturas_fct.databinding.ActivityForgotPasswordBinding
 import com.marinaruiz.facturas_fct.domain.ForgotPasswordUseCase
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-class ForgotPasswordActivity @Inject constructor(
-    private val forgotPasswordUseCase: ForgotPasswordUseCase
-) : AppCompatActivity() {
+@AndroidEntryPoint
+class ForgotPasswordActivity : AppCompatActivity() {
+    @Inject
+    lateinit var forgotPasswordUseCase: ForgotPasswordUseCase
     private lateinit var binding: ActivityForgotPasswordBinding
     private var padding: Int = 0
 

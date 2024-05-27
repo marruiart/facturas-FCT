@@ -11,12 +11,17 @@ import com.marinaruiz.facturas_fct.data.repository.FilterService
 import com.marinaruiz.facturas_fct.data.repository.model.Filter
 import com.marinaruiz.facturas_fct.data.repository.model.InvoiceVO
 import com.marinaruiz.facturas_fct.data.repository.model.applyFilter
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 import kotlin.math.ceil
 import kotlin.math.floor
 
-class InvoicesViewModel : ViewModel() {
-    private val repository: AppRepository = AppRepository.getInstance()
+@HiltViewModel
+class InvoicesViewModel @Inject constructor(
+    private val repository: AppRepository
+) : ViewModel() {
+
     private val network = NetworkConnectionManager.getInstance(viewModelScope)
 
     private var _invoices: List<InvoiceVO> = emptyList()
